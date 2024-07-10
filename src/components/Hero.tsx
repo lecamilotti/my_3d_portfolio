@@ -1,9 +1,9 @@
-import { motion } from "framer-motion";
+import { motion } from 'framer-motion';
 
-import { styles } from "../styles";
-import { ComputersCanvas } from "./canvas";
+import { styles } from '../styles';
+import { ComputersCanvas } from './canvas';
 
-const Hero = () => {
+const Hero: React.FC = () => {
   return (
     <section className={`relative w-full h-screen mx-auto`}>
       <div
@@ -37,7 +37,7 @@ const Hero = () => {
               transition={{
                 duration: 1.5,
                 repeat: Infinity,
-                repeatType: "loop",
+                repeatType: 'loop',
               }}
               className='w-3 h-3 rounded-full bg-secondary mb-1'
             />

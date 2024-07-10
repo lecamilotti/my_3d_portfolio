@@ -1,25 +1,37 @@
-import React from "react";
 import {
   VerticalTimeline,
   VerticalTimelineElement,
-} from "react-vertical-timeline-component";
-import { motion } from "framer-motion";
+} from 'react-vertical-timeline-component';
+import { motion } from 'framer-motion';
 
-import "react-vertical-timeline-component/style.min.css";
+import 'react-vertical-timeline-component/style.min.css';
 
-import { styles } from "../styles";
-import { experiences } from "../constants";
-import { SectionWrapper } from "../hoc";
-import { textVariant } from "../utils/motion";
+import { styles } from '../styles';
+import { experiences } from '../constants';
+import { SectionWrapper } from '../hoc';
+import { textVariant } from '../utils/motion';
 
-const ExperienceCard = ({ experience }) => {
+interface Experience {
+  date: string;
+  icon: string;
+  iconBg: string;
+  title: string;
+  company_name: string;
+  points: string[];
+}
+
+interface ExperienceCardProps {
+  experience: Experience;
+}
+
+const ExperienceCard: React.FC<ExperienceCardProps> = ({ experience }) => {
   return (
     <VerticalTimelineElement
       contentStyle={{
-        background: "#1d1836",
-        color: "#fff",
+        background: '#1d1836',
+        color: '#fff',
       }}
-      contentArrowStyle={{ borderRight: "7px solid  #232631" }}
+      contentArrowStyle={{ borderRight: '7px solid  #232631' }}
       date={experience.date}
       iconStyle={{ background: experience.iconBg }}
       icon={
@@ -56,10 +68,10 @@ const ExperienceCard = ({ experience }) => {
   );
 };
 
-const Experience = () => {
+const Experience: React.FC = () => {
   return (
     <>
-      <motion.div variants={textVariant()}>
+      <motion.div variants={textVariant(0)}>
         <p className={`${styles.sectionSubText} text-center`}>
           What I have done so far
         </p>
@@ -82,4 +94,4 @@ const Experience = () => {
   );
 };
 
-export default SectionWrapper(Experience, "work");
+export default SectionWrapper({ idName: 'work', Component: Experience });
