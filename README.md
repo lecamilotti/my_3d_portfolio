@@ -1,30 +1,108 @@
-# React + TypeScript + Vite
+## 📋 <a name="table">Table of Contents</a>
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+1. 🤖 [Introduction](#introduction)
+2. ⚙️ [Tech Stack](#tech-stack)
+3. 🔋 [Features](#features)
+4. 🤸 [Quick Start](#quick-start)
+5. 🕸️ [Snippets](#snippets)
+6. 🔗 [Links](#links)
+7. 🚀 [More](#more)
 
-Currently, two official plugins are available:
+## <a name="tech-stack">⚙️ Tech Stack</a>
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+- React.js
+- Three.js
+- React Three Fiber
+- React Three Drei
+- Email JS
+- Vite
+- Tailwind CSS
 
-## Expanding the ESLint configuration
+## <a name="features">🔋 Features</a>
 
-If you are developing a production application, we recommend updating the configuration to enable type aware lint rules:
+👉 **Customizable 3D Hero Section**: Includes a 3D desktop model easily customizable to suit specific needs.
 
-- Configure the top-level `parserOptions` property like this:
+👉 **Interactive Experience and Work Sections**: Utilizes animations powered by framer motion for engaging user experience.
 
-```js
-export default {
-  // other rules...
-  parserOptions: {
-    ecmaVersion: 'latest',
-    sourceType: 'module',
-    project: ['./tsconfig.json', './tsconfig.node.json'],
-    tsconfigRootDir: __dirname,
-  },
-}
+👉 **3D Skills Section**: Showcases skills using 3D geometries through three.js and React Three fiber
+
+👉 **Animated Projects and Testimonials**: Features animated sections using framer motion for projects and client testimonials.
+
+👉 **Contact Section with 3D Earth Model**:Integrates a 3D earth model with email functionality powered by emailjs.
+
+👉 **3D Stars**: Generate stars progressively at random positions using Three.js for background display.
+
+👉 **Consistent Animations**: Implements cohesive animations throughout the website using framer motion.
+
+👉 **Responsive Design**: Ensures optimal display and functionality across all devices.
+
+and many more, including code architecture and reusability
+
+## <a name="quick-start">🤸 Quick Start</a>
+
+Follow these steps to set up the project locally on your machine.
+
+**Prerequisites**
+
+Make sure you have the following installed on your machine:
+
+- [Git](https://git-scm.com/)
+- [Node.js](https://nodejs.org/en)
+- [npm](https://www.npmjs.com/) (Node Package Manager)
+
+**Cloning the Repository**
+
+```bash
+git clone https://github.com/lecamilotti/my_3d_portfolio.git
+cd portfolio
 ```
 
-- Replace `plugin:@typescript-eslint/recommended` to `plugin:@typescript-eslint/recommended-type-checked` or `plugin:@typescript-eslint/strict-type-checked`
-- Optionally add `plugin:@typescript-eslint/stylistic-type-checked`
-- Install [eslint-plugin-react](https://github.com/jsx-eslint/eslint-plugin-react) and add `plugin:react/recommended` & `plugin:react/jsx-runtime` to the `extends` list
+**Installation**
+
+Install the project dependencies using npm:
+
+```bash
+npm install
+```
+
+**Set Up Environment Variables**
+
+Create a new file named `.env` in the root of your project and add the following content:
+
+```env
+REACT_APP_EMAILJS_USERID=your_emailjs_user_id
+REACT_APP_EMAILJS_TEMPLATEID=your_emailjs_template_id
+REACT_APP_EMAILJS_RECEIVERID=your_emailjs_receiver_id
+```
+
+Replace the placeholder values with your actual EmailJS credentials. You can obtain these credentials by signing up on the [EmailJS website](https://www.emailjs.com/).
+
+**Running the Project**
+
+```bash
+npm run dev
+```
+
+Open [http://localhost:5173](http://localhost:5173) in your browser to view the project.
+
+## <a name="links">🔗 Links</a>
+
+Models and Assets used in the project can be found [here](https://drive.google.com/drive/folders/1KVU8iaH0E_JFtShNiR3BgCSA3pawXY4Z)
+
+## <a name="more">🚀 More</a>
+
+This project was inspired by a JSMastery where they do a lot of nice content for frontend developers
+
+<a href="https://jsmastery.pro/" target="_blank">
+JsMastery
+</a>
+
+<br />
+<br />
+
+do you want to contact me, feel free to reach out trought linkedin
+<a href='https://www.linkedin.com/in/leandrocamilotti/' target='_blank'>
+Leandro Camilotti | LinkedIn
+</a>
+
+#
