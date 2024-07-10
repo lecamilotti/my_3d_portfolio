@@ -4,9 +4,8 @@
 2. ⚙️ [Tech Stack](#tech-stack)
 3. 🔋 [Features](#features)
 4. 🤸 [Quick Start](#quick-start)
-5. 🕸️ [Snippets](#snippets)
-6. 🔗 [Links](#links)
-7. 🚀 [More](#more)
+5. 🔗 [Links](#links)
+6. 🚀 [More](#more)
 
 ## <a name="tech-stack">⚙️ Tech Stack</a>
 
@@ -91,7 +90,7 @@ Models and Assets used in the project can be found [here](https://drive.google.c
 
 ## <a name="more">🚀 More</a>
 
-This project was inspired by a JSMastery where they do a lot of nice content for frontend developers
+This project was inspired by a JSMastery where they do a lot of cool stuff for frontend developers
 
 <a href="https://jsmastery.pro/" target="_blank">
 JsMastery
