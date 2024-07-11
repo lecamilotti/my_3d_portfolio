@@ -1,12 +1,20 @@
-import React from "react";
-import { motion } from "framer-motion";
+import { motion, Variants } from 'framer-motion';
 
-import { styles } from "../styles";
-import { SectionWrapper } from "../hoc";
-import { fadeIn, textVariant } from "../utils/motion";
-import { testimonials } from "../constants";
+import { styles } from '../styles';
+import { SectionWrapper } from '../hoc';
+import { fadeIn, textVariant } from '../utils/motion';
+import { testimonials } from '../constants';
 
-const FeedbackCard = ({
+interface FeedbackCardProps {
+  index: number;
+  testimonial: string;
+  name: string;
+  designation: string;
+  company: string;
+  image: string;
+}
+
+const FeedbackCard: React.FC<FeedbackCardProps> = ({
   index,
   testimonial,
   name,
@@ -15,7 +23,7 @@ const FeedbackCard = ({
   image,
 }) => (
   <motion.div
-    variants={fadeIn("", "spring", index * 0.5, 0.75)}
+    variants={fadeIn('', 'spring', index * 0.5, 0.75) as unknown as Variants}
     className='bg-black-200 p-10 rounded-3xl xs:w-[320px] w-full'
   >
     <p className='text-white font-black text-[48px]'>"</p>
@@ -43,13 +51,13 @@ const FeedbackCard = ({
   </motion.div>
 );
 
-const Feedbacks = () => {
+const Feedbacks: React.FC = () => {
   return (
     <div className={`mt-12 bg-black-100 rounded-[20px]`}>
       <div
         className={`bg-tertiary rounded-2xl ${styles.padding} min-h-[300px]`}
       >
-        <motion.div variants={textVariant()}>
+        <motion.div variants={textVariant(0) as unknown as Variants}>
           <p className={styles.sectionSubText}>What others say</p>
           <h2 className={styles.sectionHeadText}>Testimonials.</h2>
         </motion.div>
@@ -63,4 +71,4 @@ const Feedbacks = () => {
   );
 };
 
-export default SectionWrapper(Feedbacks, "");
+export default SectionWrapper({ idName: 'feedbacks', Component: Feedbacks });
