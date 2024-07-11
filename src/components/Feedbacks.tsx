@@ -1,10 +1,8 @@
 import { motion, Variants } from 'framer-motion';
-
 import { styles } from '../styles';
-import { SectionWrapper } from '../hoc';
 import { fadeIn, textVariant } from '../utils/motion';
 import { testimonials } from '../constants';
-
+import { SectionWrapper } from '../hoc';
 interface FeedbackCardProps {
   index: number;
   testimonial: string;
@@ -63,9 +61,10 @@ const Feedbacks: React.FC = () => {
         </motion.div>
       </div>
       <div className={`-mt-20 pb-14 ${styles.paddingX} flex flex-wrap gap-7`}>
-        {testimonials.map((testimonial, index) => (
+        To be created
+        {/* {testimonials.map((testimonial, index) => (
           <FeedbackCard key={testimonial.name} index={index} {...testimonial} />
-        ))}
+        ))} */}
       </div>
     </div>
   );

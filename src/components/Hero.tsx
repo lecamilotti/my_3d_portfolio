@@ -19,8 +19,8 @@ const Hero: React.FC = () => {
             Hi, I'm <span className='text-[#915EFF]'>Leandro Camilotti</span>
           </h1>
           <p className={`${styles.heroSubText} mt-2 text-white-100`}>
-            I develop 3D visuals, user <br className='sm:block hidden' />
-            interfaces and web applications
+            I´m a frontend developer <br className='sm:block hidden' />
+            Ready to create 3D interfaces and web applications
           </p>
         </div>
       </div>

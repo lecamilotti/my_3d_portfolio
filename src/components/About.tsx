@@ -3,9 +3,10 @@ import Tilt from 'react-parallax-tilt';
 import { motion, Variants } from 'framer-motion';
 
 import { services } from '../constants';
-import { SectionWrapper } from '../hoc';
+
 import { fadeIn, textVariant } from '../utils/motion';
 import { styles } from '../styles';
+import { SectionWrapper } from '../hoc';
 
 interface ServiceCardProps {
   index: number;
