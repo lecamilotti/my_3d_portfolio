@@ -23,14 +23,35 @@ declare module './canvas' {
   export const EarthCanvas: FC;
 }
 
-declare module '../assets' {
-  export const github: string;
+declare module 'styles' {
+  const styles: {
+    paddingX: string;
+    paddingY: string;
+    padding: string;
+    heroHeadText: string;
+    heroSubText: string;
+    sectionHeadText: string;
+    sectionSubText: string;
+  };
+  export { styles };
 }
 
 // Declaration file for assets
 declare module '*.png' {
   const value: string;
   export default value;
+}
+
+declare module './SectionWrapper' {
+  import { FC } from 'react';
+
+  interface SectionWrapperProps {
+    idName: string;
+    Component: FC;
+  }
+
+  const SectionWrapper: FC<SectionWrapperProps>;
+  export default SectionWrapper;
 }
 
 declare module '*.svg' {

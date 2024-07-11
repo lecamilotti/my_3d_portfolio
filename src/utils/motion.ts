@@ -1,5 +1,5 @@
 interface Transition {
-  type: string;
+  type?: string;
   delay?: number;
   duration?: number;
   ease?: string;
@@ -23,7 +23,7 @@ interface Variant {
   };
 }
 
-export const textVariant = (delay: number): Variant => {
+export const textVariant = (delay?: number): Variant => {
   return {
     hidden: {
       y: -50,
@@ -42,10 +42,10 @@ export const textVariant = (delay: number): Variant => {
 };
 
 export const fadeIn = (
-  direction: 'left' | 'right' | 'up' | 'down' | '',
-  type: string,
-  delay: number,
-  duration: number
+  direction?: 'left' | 'right' | 'up' | 'down' | '',
+  type?: string,
+  delay?: number,
+  duration?: number
 ): Variant => {
   return {
     hidden: {
@@ -67,7 +67,7 @@ export const fadeIn = (
   };
 };
 
-export const zoomIn = (delay: number, duration: number): Variant => {
+export const zoomIn = (delay?: number, duration?: number): Variant => {
   return {
     hidden: {
       scale: 0,
@@ -87,10 +87,10 @@ export const zoomIn = (delay: number, duration: number): Variant => {
 };
 
 export const slideIn = (
-  direction: 'left' | 'right' | 'up' | 'down' | '',
-  type: string,
-  delay: number,
-  duration: number
+  direction?: 'left' | 'right' | 'up' | 'down' | '',
+  type?: string,
+  delay?: number,
+  duration?: number
 ): Variant => {
   return {
     hidden: {
@@ -111,8 +111,8 @@ export const slideIn = (
 };
 
 export const staggerContainer = (
-  staggerChildren: number,
-  delayChildren: number
+  staggerChildren?: number,
+  delayChildren?: number
 ): Variant => {
   return {
     hidden: {},
