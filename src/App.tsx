@@ -10,7 +10,7 @@ import {
   Tech,
   Works,
   StarsCanvas,
-  NebulaCanvas,
+  // NebulaCanvas,
 } from './components';
 
 const App = () => {
