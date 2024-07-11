@@ -1,10 +1,8 @@
 import { motion, Variants } from 'framer-motion';
-
 import { styles } from '../styles';
-import { SectionWrapper } from '../hoc';
 import { fadeIn, textVariant } from '../utils/motion';
 import { testimonials } from '../constants';
-
+import { SectionWrapper } from '../hoc';
 interface FeedbackCardProps {
   index: number;
   testimonial: string;

@@ -3,9 +3,10 @@ import { motion, Variants } from 'framer-motion';
 import emailjs from '@emailjs/browser';
 
 import { EarthCanvas } from './canvas';
-import { SectionWrapper } from '../hoc';
+
 import { slideIn } from '../utils/motion';
 import { styles } from '../styles';
+import { SectionWrapper } from '../hoc';
 
 const Contact: React.FC = () => {
   const formRef = useRef<HTMLFormElement | null>(null);
