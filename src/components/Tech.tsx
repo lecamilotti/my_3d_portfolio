@@ -16,4 +16,4 @@ const Tech: React.FC = () => {
   );
 };
 
-export default SectionWrapper(Tech, '');
+export default SectionWrapper({ idName: 'tech', Component: Tech})

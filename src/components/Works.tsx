@@ -110,4 +110,4 @@ const Works: React.FC = () => {
   );
 };
 
-export default SectionWrapper(Works, '');
+export default SectionWrapper({ idName: 'work', Component: Works });

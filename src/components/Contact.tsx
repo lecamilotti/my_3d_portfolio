@@ -133,4 +133,4 @@ const Contact: React.FC = () => {
   );
 };
 
-export default SectionWrapper(Contact, 'contact');
+export default SectionWrapper({idName: 'contact', Component: Contact});

@@ -57,4 +57,4 @@ const About: React.FC = () => {
   );
 };
 
-export default SectionWrapper(About, 'about');
+export default SectionWrapper({ idName: 'about', Component: About });

@@ -71,4 +71,4 @@ const Feedbacks: React.FC = () => {
   );
 };
 
-export default SectionWrapper(Feedbacks, '');
+export default SectionWrapper({ idName: 'feedbacks', Component: Feedbacks });

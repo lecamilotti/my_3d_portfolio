@@ -1,6 +1,5 @@
-import React, { FC } from 'react';
+import React from 'react';
 import { motion } from 'framer-motion';
-
 import { styles } from '../styles';
 import { staggerContainer } from '../utils/motion';
 
@@ -9,21 +8,25 @@ interface StarWrapperProps {
   Component: React.ComponentType;
 }
 
-const StarWrapper: React.FC<StarWrapperProps> = ({ Component, idName }) => {
-  return (
-    <motion.section
-      variants={staggerContainer(0.1, 0.1)}
-      initial='hidden'
-      whileInView='show'
-      viewport={{ once: true, amount: 0.25 }}
-      className={`${styles.padding} max-w-7xl mx-auto relative z-0`}
-    >
-      <span className='hash-span' id={idName}>
-        &nbsp;
-      </span>
-      <Component />
-    </motion.section>
-  );
+const StarWrapper = ({ Component, idName }: StarWrapperProps): React.FC => {
+  const HOC: React.FC = () => {
+    return (
+      <motion.section
+        variants={staggerContainer()}
+        initial='hidden'
+        whileInView='show'
+        viewport={{ once: true, amount: 0.25 }}
+        className={`${styles.padding} max-w-7xl mx-auto relative z-0`}
+      >
+        <span className='hash-span' id={idName}>
+          &nbsp;
+        </span>
+        <Component />
+      </motion.section>
+    );
+  };
+
+  return HOC;
 };
 
 export default StarWrapper;
