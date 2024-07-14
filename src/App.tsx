@@ -1,5 +1,5 @@
+import React from 'react';
 import { BrowserRouter } from 'react-router-dom';
-
 import {
   About,
   Contact,
@@ -10,14 +10,17 @@ import {
   Tech,
   Works,
   StarsCanvas,
-  // NebulaCanvas,
+  // SpaceshipCanvas,
+  // ISSCanvas,
 } from './components';
 
-const App = () => {
+const App: React.FC = () => {
   return (
     <BrowserRouter>
-      <div className='relative z-0 bg-primary'>
-        {/* <NebulaCanvas /> */}
+      <div className='relative z-0 bg-gradient-to-r from-blue-900 to-black'>
+        {/* <SpaceshipCanvas /> */}
+        <StarsCanvas />
+
         <div className='bg-hero-pattern bg-cover bg-no-repeat bg-center'>
           <Navbar />
           <Hero />
@@ -27,9 +30,8 @@ const App = () => {
         <Tech />
         <Works />
         <Feedbacks />
-        <div className='relative z-0'>
+        <div className='relative z-0 w-full'>
           <Contact />
-          <StarsCanvas />
         </div>
       </div>
     </BrowserRouter>
