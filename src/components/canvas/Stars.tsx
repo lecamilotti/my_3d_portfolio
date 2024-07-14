@@ -1,4 +1,4 @@
-import { useState, useRef, Suspense } from 'react';
+import React, { useState, useRef, Suspense } from 'react';
 import { Canvas, useFrame } from '@react-three/fiber';
 import { Points, PointMaterial, Preload } from '@react-three/drei';
 import * as random from 'maath/random/dist/maath-random.esm';
@@ -7,7 +7,7 @@ import * as THREE from 'three';
 const Stars: React.FC = (props) => {
   const ref = useRef<THREE.Points>(null);
   const [sphere] = useState(() =>
-    random.inSphere(new Float32Array(5000), { radius: 1.2 })
+    random.inSphere(new Float32Array(10000), { radius: 1.2 })
   );
 
   useFrame((_state, delta) => {
@@ -23,9 +23,11 @@ const Stars: React.FC = (props) => {
         <PointMaterial
           transparent
           color='#f272c8'
-          size={0.002}
+          size={0.0004} // Smaller size
           sizeAttenuation={true}
           depthWrite={false}
+     
+          
         />
       </Points>
     </group>

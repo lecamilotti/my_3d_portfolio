@@ -4,6 +4,8 @@ import {
   ComputersCanvas,
   StarsCanvas,
   NebulaCanvas,
+  SpaceshipCanvas,
+  ISSCanvas,
 } from './canvas';
 import Hero from './Hero';
 import Navbar from './Navbar';
@@ -29,5 +31,7 @@ export {
   BallCanvas,
   ComputersCanvas,
   NebulaCanvas,
+  ISSCanvas,
   StarsCanvas,
+  SpaceshipCanvas,
 };
