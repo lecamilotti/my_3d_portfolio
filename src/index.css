@@ -83,7 +83,7 @@
 }
 
 .blue-text-gradient {
-  /* background: -webkit-linear-gradient(#eee, #333); */
+  background: -webkit-linear-gradient(#eee, #333);
   background: #56ccf2; /* fallback for old browsers */
   background: -webkit-linear-gradient(
     to top,

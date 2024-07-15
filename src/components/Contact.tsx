@@ -1,10 +1,10 @@
 import { useEffect, useRef, useState } from 'react';
 import emailjs from '@emailjs/browser';
-import { motion, Variants } from 'framer-motion';
-import { ISSCanvas } from './canvas';
-import { slideIn } from '../utils/motion';
+import { motion } from 'framer-motion';
+
 import { styles } from '../styles';
 import { SectionWrapper } from '../hoc';
+import { ISSCanvas } from './canvas';
 
 const Contact: React.FC = () => {
   const formRef = useRef<HTMLFormElement | null>(null);
@@ -52,18 +52,6 @@ const Contact: React.FC = () => {
       );
   };
 
-  // create a time out to set hovered to false after 5 seconds
-  useEffect(() => {
-    let timeout: ReturnType<typeof setTimeout>;
-    if (hovered) {
-      timeout = setTimeout(() => {
-        setHovered(false);
-      }, 9000);
-    }
-
-    return () => clearTimeout(timeout);
-  }, [hovered]);
-
   useEffect(() => {
     if (showModal) {
       console.log(showModal);
@@ -72,9 +60,9 @@ const Contact: React.FC = () => {
   }, [showModal]);
 
   return (
-    <div className='relative h-[50vh] z-50'>
+    <div className='relative h-[60vh] pb-0 mb-0 z-50'>
       <motion.div
-        variants={slideIn('right', 'tween', 0.2, 1) as unknown as Variants}
+        // variants={slideIn('right', 'tween', 0.2, 1) as unknown as Variants}
         className='absolute inset-0 h-full z-0'
         onPointerOver={() => {
           if (!showModal) {
@@ -82,15 +70,21 @@ const Contact: React.FC = () => {
           }
         }}
         onPointerOut={() => {
-          setHovered(false);
+          let timeout: ReturnType<typeof setTimeout>;
+          if (hovered) {
+            timeout = setTimeout(() => {
+              setHovered(false);
+            }, 2000);
+          }
+          return () => clearTimeout(timeout);
         }}
       >
         <ISSCanvas />
       </motion.div>
       {hovered && (
-        <div className='absolute top-0 left-1/2 transform -translate-x-1/2 -translate-y-1/2 p-6 bg-white bg-opacity-90 rounded-lg shadow-2xl z-index-50'>
+        <div className='absolute top-0 left-1/2 transform -translate-x-1/2 -translate-y-1/2 p-6 bg-black-100 bg-opacity-90 rounded-lg shadow-2xl z-index-50'>
           <p className='text-center text-lg'>
-            Would you like to contact me or work with me?{' '}
+            Would you like to contact me or work with me?
             <button
               onClick={() => setShowModal(true)}
               className='mt-2 px-4 py-2 bg-blue-500 text-white rounded-lg shadow-md hover:bg-blue-600 transition duration-300'
