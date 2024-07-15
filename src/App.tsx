@@ -17,7 +17,7 @@ import {
 const App: React.FC = () => {
   return (
     <BrowserRouter>
-      <div className='relative z-0 bg-gradient-to-r from-blue-900 to-black'>
+      <div className='relative z-0  mb-0  bg-gradient-to-r from-blue-900 to-black pb-0'>
         {/* <SpaceshipCanvas /> */}
         <StarsCanvas />
 
@@ -30,7 +30,7 @@ const App: React.FC = () => {
         <Tech />
         <Works />
         <Feedbacks />
-        <div className='relative z-0 w-full'>
+        <div className='relative z-0  mb-0 w-full pb-0'>
           <Contact />
         </div>
       </div>
