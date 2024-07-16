@@ -1,82 +1,100 @@
 import React, { Suspense, useRef } from 'react';
 import { Canvas, useFrame } from '@react-three/fiber';
 import { OrbitControls, Preload, Stars, useGLTF } from '@react-three/drei';
+import * as THREE from 'three';
 
 import CanvasLoader from '../Loader';
 
 type GLTFResult = {
-  scene: object;
+  scene: THREE.Group;
 };
 
-const ISSModel: React.FC = () => {
-  const issRef = useRef();
+const ISSModel: React.FC<{
+  issRef: React.MutableRefObject<THREE.Mesh | null>;
+}> = ({ issRef }) => {
   const { scene } = useGLTF('./space_station/scene.gltf') as GLTFResult;
 
-  // Rotate the ISS model to the right
-  useFrame(() => {
-    if (issRef.current) {
-      (issRef.current as any).rotation.y += 0.002; // Adjust rotation speed as needed
-    }
-  });
-
   return (
-    <primitive ref={issRef} object={scene} scale={5.0} position={[0, 5, 0]} />
+    <mesh ref={issRef}>
+      <hemisphereLight intensity={0.2} />
+      <spotLight
+        position={[0, 0, 0]}
+        angle={0.12}
+        penumbra={1}
+        intensity={1}
+        castShadow
+        shadow-mapSize={1024}
+      />
+      <pointLight intensity={1} />
+
+      <primitive
+        object={scene}
+        scale={4.0}
+        position={[0, 7, 2]}
+        rotation={[0, 4.2, 0]}
+        autorotation={0.05}
+      />
+    </mesh>
   );
 };
 
 const Earth: React.FC = () => {
-  const earthRef = useRef();
-  const earth = useGLTF('./planet/scene.gltf');
+  const earthRef = useRef<THREE.Mesh>(null);
+  const { scene } = useGLTF('./planet/scene.gltf');
 
-  // Rotate the Earth backwards (on the X-axis)
+  // create a function to make the earth rotate as looping animation
   useFrame(() => {
     if (earthRef.current) {
-      (earthRef.current as any).rotation.x -= 0.001; // Adjust rotation speed as needed
+      earthRef.current.rotation.y += 0.001;
     }
   });
 
   return (
-    <mesh>
-      <hemisphereLight intensity={0.5} />
+    <mesh ref={earthRef}>
+      <hemisphereLight intensity={0} groundColor='black' />
       <spotLight
-        position={[0, 0, 0]}
-        angle={0.3}
+        angle={0.12}
         penumbra={1}
         intensity={1}
         castShadow
-        shadow-mapSize-width={1024}
-        shadow-mapSize-height={1024}
+        shadow-mapSize={1024}
       />
       <pointLight intensity={1} />
       <primitive
-        ref={earthRef}
-        object={earth.scene}
-        scale={30.0}
-        position={[0, -75, 0]} // Position adjusted to ensure it is below the ISSModel
-        // No need to set initial rotation here unless you want a specific starting angle
+        rotation={[-0.05, -0.4, -0.1]}
+        object={scene}
+        scale={25.0}
+        position={[0, -60, 0]}
+        opacity={10}
+        transparent
+        matrixAutoUpdate={true}
       />
     </mesh>
   );
 };
 
 const ISSCanvas: React.FC<{}> = () => {
+  const issRef = useRef<THREE.Mesh>(null);
+
   return (
     <div className='relative w-full h-full z-0 mb-0 pb-0'>
       <Canvas
         shadows
-        frameloop='demand'
+        frameloop='always'
         dpr={[1, 2]}
         gl={{ preserveDrawingBuffer: true }}
-        camera={{ fov: 50, near: 0.1, far: 2000, position: [-50, 10, 20] }}
+        camera={{
+          fov: 80,
+          near: 0.1,
+          far: 2000,
+          position: [10, 20, 20],
+        }}
       >
         <Suspense fallback={<CanvasLoader />}>
-          <ambientLight intensity={0.7} />
-          <OrbitControls
-            enableZoom={false}
-            autoRotate
-            autoRotateSpeed={1.0} // Adjust the auto-rotate speed if needed
-          />
-          <ISSModel />
+          <ambientLight intensity={0.2} />
+          {/* <OrbitControls enableZoom={false} autoRotate autoRotateSpeed={0.5} /> */}
+          <OrbitControls enableZoom enableRotate enablePan />
+          <ISSModel issRef={issRef} />
           <Earth />
           <Stars
             radius={300}
