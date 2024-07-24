@@ -1,4 +1,4 @@
-import React, { useEffect, useRef, useState } from "react";
+import React, { useEffect, useRef, useState } from 'react';
 import {
   DndContext,
   DragEndEvent,
@@ -6,55 +6,55 @@ import {
   TouchSensor,
   useSensor,
   useSensors,
-} from "@dnd-kit/core";
-import { Card } from "./components/Card";
-import { Board } from "./components/Board";
-import { Column } from "./components/Column";
-import { VscKebabVertical } from "react-icons/vsc";
-import "./index.scss";
-import CreateTaskForm from "./components/CreateTaskForm";
-import Modal from "./common/Modal";
-import KebabMenuModal from "./common/KebabMenuModal";
-import toast, { Toaster } from "react-hot-toast";
+} from '@dnd-kit/core';
+import { Card } from './components/Card';
+import { Board } from './components/Board';
+import { Column } from './components/Column';
+import { VscKebabVertical } from 'react-icons/vsc';
+import './index.scss';
+import CreateTaskForm from './components/CreateTaskForm';
+import Modal from './common/Modal';
+import KebabMenuModal from './common/KebabMenuModal';
+import toast, { Toaster } from 'react-hot-toast';
 
-type ColumnType = "Backlog" | "Todo" | "Done";
+type ColumnType = 'Backlog' | 'Todo' | 'Done';
 
 export const mockData = {
   cards: [
     {
-      id: "id - 1",
-      title: "Get a job at UNIwise",
+      id: 'id - 1',
+      title: 'Get a job at UNIwise',
       content:
-        "I hope UNIwise finds that I am a good match for the position and I get the job :-)",
-      column: "Backlog",
-      priority: "high",
-      status: "Backlog",
+        'I hope UNIwise finds that I am a good match for the position and I get the job :-)',
+      column: 'Backlog',
+      priority: 'high',
+      status: 'Backlog',
     },
     {
-      id: "id - 2",
-      title: "Finish the Kanban app and other tasks",
+      id: 'id - 2',
+      title: 'Finish the Kanban app and other tasks',
       content:
-        "The kanban app and the other tasks will be a great challenge to work on",
-      column: "Todo",
-      priority: "medium",
-      status: "Todo",
+        'The kanban app and the other tasks will be a great challenge to work on',
+      column: 'Todo',
+      priority: 'medium',
+      status: 'Todo',
     },
     {
-      id: "id - 3",
-      title: "Walk with my dog",
-      content: "Take my dog for a walk in the park as soon as i have free time",
-      column: "Backlog",
-      priority: "low",
-      status: "Backlog",
+      id: 'id - 3',
+      title: 'Walk with my dog',
+      content: 'Take my dog for a walk in the park as soon as i have free time',
+      column: 'Backlog',
+      priority: 'low',
+      status: 'Backlog',
     },
   ],
 };
 
 function KanbanProject() {
-  const columns: ColumnType[] = ["Backlog", "Todo", "Done"];
+  const columns: ColumnType[] = ['Backlog', 'Todo', 'Done'];
   const [cards, setCards] = useState(mockData.cards);
 
-  const [searchTerm, setSearchTerm] = useState<string>("");
+  const [searchTerm, setSearchTerm] = useState<string>('');
   const [isModalOpen, setIsModalOpen] = useState<boolean>(false);
   const [selectedCardId, setSelectedCardId] = useState<string | null>(null);
   const [isKebabMenuOpen, setIsKebabMenuOpen] = useState<boolean>(false);
@@ -73,7 +73,7 @@ function KanbanProject() {
   const CardIdRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
-    const savedCards = localStorage.getItem("kanban_cards");
+    const savedCards = localStorage.getItem('kanban_cards');
     const parsedCards = savedCards ? JSON.parse(savedCards) : mockData.cards;
     if (JSON.stringify(parsedCards) !== JSON.stringify(cards)) {
       setCards(parsedCards);
@@ -82,7 +82,7 @@ function KanbanProject() {
   }, []);
 
   useEffect(() => {
-    localStorage.setItem("kanban_cards", JSON.stringify(cards));
+    localStorage.setItem('kanban_cards', JSON.stringify(cards));
   }, [cards]);
 
   const handleKebabMenuClick = (event: React.MouseEvent<HTMLButtonElement>) => {
@@ -91,8 +91,8 @@ function KanbanProject() {
     setIsKebabMenuOpen(true);
     // get the clicked card id
     const cardId = event.currentTarget
-      .closest(".task")
-      ?.querySelector(".card-id")?.textContent;
+      .closest('.task')
+      ?.querySelector('.card-id')?.textContent;
     if (cardId) {
       setSelectedCardId(cardId);
     }
@@ -107,11 +107,11 @@ function KanbanProject() {
   useEffect(() => {
     if (newCard) {
       const sortedCards = cards.sort((a, b) => {
-        if (a.priority === "high" && b.priority !== "high") {
+        if (a.priority === 'high' && b.priority !== 'high') {
           return -1;
-        } else if (a.priority === "medium" && b.priority === "low") {
+        } else if (a.priority === 'medium' && b.priority === 'low') {
           return -1;
-        } else if (a.priority === "low" && b.priority !== "low") {
+        } else if (a.priority === 'low' && b.priority !== 'low') {
           return 1;
         }
         return 0;
@@ -165,7 +165,7 @@ function KanbanProject() {
         )
       );
     }
-    toast.success("Task moved successfully");
+    toast.success('Task moved successfully');
   };
 
   const generateUniqueId = (): string => {
@@ -192,18 +192,18 @@ function KanbanProject() {
       id: newId,
       title,
       content,
-      column: "Backlog",
+      column: 'Backlog',
       priority,
-      status: "backlog",
+      status: 'backlog',
     };
 
     // Insert the new card into the correct position based on its priority
     let insertionIndex = cards.length;
     for (let i = 0; i < cards.length; i++) {
       if (
-        (priority === "high" && cards[i].priority !== "high") ||
-        (priority === "medium" && cards[i].priority === "low") ||
-        (priority === "low" && cards[i].priority !== "low")
+        (priority === 'high' && cards[i].priority !== 'high') ||
+        (priority === 'medium' && cards[i].priority === 'low') ||
+        (priority === 'low' && cards[i].priority !== 'low')
       ) {
         insertionIndex = i;
         break;
@@ -220,8 +220,8 @@ function KanbanProject() {
   };
 
   return (
-    <div id="task-3">
-      <Toaster position="top-right" reverseOrder={false} />
+    <div id='kanban'>
+      <Toaster position='top-right' reverseOrder={false} />
       <KebabMenuModal
         isOpen={isKebabMenuOpen}
         onClose={() => setIsKebabMenuOpen(false)}
@@ -235,37 +235,37 @@ function KanbanProject() {
         onEdit={() => {
           setIsKebabMenuOpen(false);
           setIsEditModalOpen(true);
-          handleEditModalOpen(selectedCardId || "");
+          handleEditModalOpen(selectedCardId || '');
         }}
-        classModal="kebab-menu-modal"
+        classModal='kebab-menu-modal'
         coordinates={kebabMenuCoordinates || { x: 0, y: 0 }}
       />
 
       {isModalOpen && (
         <Modal
-          title="Add a new task"
+          title='Add a new task'
           onClose={handleModalClose}
-          onButtonClick={() => console.log("Button clicked")}
-          buttonLabel="Add Task"
+          onButtonClick={() => console.log('Button clicked')}
+          buttonLabel='Add Task'
           showButton={false}
         >
           <CreateTaskForm
             onSubmit={handleTaskSubmit}
             handleModalClose={handleModalClose}
             newTask={true}
-            initialTitle=""
-            initialPriority=""
-            initialContent=""
+            initialTitle=''
+            initialPriority=''
+            initialContent=''
           />
         </Modal>
       )}
 
       {isEditModalOpen && (
         <Modal
-          title="Edit Task"
+          title='Edit Task'
           onClose={() => setIsEditModalOpen(false)}
-          onButtonClick={() => console.log("Edit Button clicked")}
-          buttonLabel="Update Task"
+          onButtonClick={() => console.log('Edit Button clicked')}
+          buttonLabel='Update Task'
           showButton={false}
         >
           <CreateTaskForm
@@ -282,13 +282,13 @@ function KanbanProject() {
             }}
             handleModalClose={() => setIsEditModalOpen(false)}
             initialTitle={
-              cards.find((c) => c.id === selectedCardId)?.title || ""
+              cards.find((c) => c.id === selectedCardId)?.title || ''
             }
             initialPriority={
-              cards.find((c) => c.id === selectedCardId)?.priority || ""
+              cards.find((c) => c.id === selectedCardId)?.priority || ''
             }
             initialContent={
-              cards.find((c) => c.id === selectedCardId)?.content || ""
+              cards.find((c) => c.id === selectedCardId)?.content || ''
             }
           />
         </Modal>
@@ -297,11 +297,11 @@ function KanbanProject() {
       {selectedCardForDescription && (
         <Modal
           title={
-            cards.find((c) => c.id === selectedCardForDescription)?.title || ""
+            cards.find((c) => c.id === selectedCardForDescription)?.title || ''
           }
           onClose={() => setSelectedCardForDescription(null)}
           onButtonClick={() => setSelectedCardForDescription(null)}
-          buttonLabel="Close"
+          buttonLabel='Close'
           showButton={true}
         >
           <div>
@@ -312,13 +312,13 @@ function KanbanProject() {
 
       <DndContext onDragEnd={handleDragEnd} sensors={sensors}>
         <Board
-          id="Kanban app"
+          id='Kanban app'
           setSearchTerm={setSearchTerm}
           setIsModalOpen={setIsModalOpen}
         >
           {columns.map((column) => (
             <Column key={column} id={column} cards={filteredCards}>
-              <h3 className="column-title">{column}</h3>
+              <h3 className='column-title'>{column}</h3>
               {filteredCards
                 .filter((card) => card.column === column)
                 .map((card) => (
@@ -327,33 +327,33 @@ function KanbanProject() {
                     id={card.id}
                     onEdit={() => handleEditModalOpen(card.id)}
                   >
-                    <div className="task-priority">
+                    <div className='task-priority'>
                       <span
                         className={`priority ${card.priority}`}
-                        style={{ width: "calc(100% - 40px)" }}
+                        style={{ width: 'calc(100% - 40px)' }}
                       >
                         {card.priority.toUpperCase()}
                       </span>
-                      <div className="kebab-menu" ref={kebabMenuRef}>
+                      <div className='kebab-menu' ref={kebabMenuRef}>
                         <button
-                          className="btn"
-                          type="button"
+                          className='btn'
+                          type='button'
                           onClick={handleKebabMenuClick}
                         >
-                          <VscKebabVertical className="icon" />
+                          <VscKebabVertical className='icon' />
                         </button>
                       </div>
                     </div>
-                    <div className="card-id">{card.id}</div>
+                    <div className='card-id'>{card.id}</div>
                     <div
-                      className="task-title"
+                      className='task-title'
                       ref={CardIdRef}
                       onClick={() => handleCardClick(card.id)}
                     >
                       {card.title}
                     </div>
                     <div
-                      className="task-description"
+                      className='task-description'
                       ref={CardIdRef}
                       onClick={() => handleCardClick(card.id)}
                     >

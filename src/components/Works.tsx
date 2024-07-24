@@ -1,4 +1,4 @@
-import React, { useState, lazy, Suspense } from 'react';
+import React, { useState } from 'react';
 import Tilt from 'react-parallax-tilt';
 import { motion, Variants } from 'framer-motion';
 
@@ -8,6 +8,7 @@ import { projects } from '../constants';
 import { fadeIn, textVariant } from '../utils/motion';
 import { SectionWrapper } from '../hoc';
 import projectComponents from '../utils/projectsComponents';
+import Modal from '../utils/Modal';
 
 interface Tag {
   name: string;
@@ -33,6 +34,7 @@ const ProjectCard: React.FC<ProjectProps> = ({
   source_code_link,
   onClick,
 }) => {
+  console.log('On click', onClick);
   return (
     <motion.div
       variants={
@@ -41,9 +43,17 @@ const ProjectCard: React.FC<ProjectProps> = ({
     >
       <Tilt
         className='bg-tertiary p-5 rounded-2xl sm:w-[360px] w-full cursor-pointer'
-        onClick={onClick}
+        onClick={(e) => {
+          e.stopPropagation();
+          onClick();
+        }}
       >
-        <div className='relative w-full h-[230px]'>
+        <div
+          className='relative w-full h-[230px]'
+          onClick={() => {
+            onClick();
+          }}
+        >
           <img
             src={image}
             alt='project_image'
@@ -87,41 +97,6 @@ const ProjectCard: React.FC<ProjectProps> = ({
   );
 };
 
-const Modal: React.FC<{
-  isOpen: boolean;
-  onClose: () => void;
-  projectIndex: number | null;
-}> = ({ isOpen, onClose, projectIndex }) => {
-  if (!isOpen || projectIndex === null) return null;
-
-  const project = projects[projectIndex];
-  const ProjectComponent = lazy(projectComponents[project.name]);
-
-  return (
-    <div className='fixed inset-0 flex items-center justify-center bg-black bg-opacity-50 z-50'>
-      <div className='bg-white p-5 rounded-lg'>
-        <div className='relative w-[800px] h-[500px] bg-gray-900 rounded-lg'>
-          <button
-            onClick={onClose}
-            className='absolute top-2 right-2 bg-red-500 text-white rounded-full w-8 h-8 flex items-center justify-center'
-          >
-            &times;
-          </button>
-          <div className='flex items-center justify-center h-full'>
-            <div className='bg-black w-[90%] h-[90%] flex items-center justify-center'>
-              <Suspense
-                fallback={<div className='text-white text-2xl'>Loading...</div>}
-              >
-                <ProjectComponent />
-              </Suspense>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  );
-};
-
 const Works: React.FC = () => {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [selectedProjectIndex, setSelectedProjectIndex] = useState<
@@ -129,11 +104,13 @@ const Works: React.FC = () => {
   >(null);
 
   const handleCardClick = (index: number) => {
+    console.log('clicked', index);
     setSelectedProjectIndex(index);
     setIsModalOpen(true);
+    console.log(projects);
+    console.log('isModalOpen', isModalOpen);
+    console.log('selectedProjectIndex', selectedProjectIndex);
   };
-  console.log(projects);
-  console.log('isModalOpen', isModalOpen);
 
   return (
     <>
