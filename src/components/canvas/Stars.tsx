@@ -26,8 +26,6 @@ const Stars: React.FC = (props) => {
           size={0.0004} // Smaller size
           sizeAttenuation={true}
           depthWrite={false}
-     
-          
         />
       </Points>
     </group>

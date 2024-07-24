@@ -62,9 +62,9 @@ const Feedbacks: React.FC = () => {
       </div>
       <div className={`-mt-20 pb-14 ${styles.paddingX} flex flex-wrap gap-7`}>
         To be created
-        {/* {testimonials.map((testimonial, index) => (
+        {testimonials.map((testimonial, index) => (
           <FeedbackCard key={testimonial.name} index={index} {...testimonial} />
-        ))} */}
+        ))}
       </div>
     </div>
   );

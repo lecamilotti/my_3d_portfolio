@@ -20,6 +20,20 @@
   display: block;
 }
 
+
+.error-boundary {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
+  background-color: #f8d7da;
+  color: #721c24;
+  padding: 20px;
+  text-align: center;
+}
+
+
 .black-gradient {
   background: #000000; /* fallback for old browsers */
   background: -webkit-linear-gradient(
