@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState, lazy, Suspense } from 'react';
 import Tilt from 'react-parallax-tilt';
 import { motion, Variants } from 'framer-motion';
 
@@ -7,11 +7,13 @@ import { github } from '../assets';
 import { projects } from '../constants';
 import { fadeIn, textVariant } from '../utils/motion';
 import { SectionWrapper } from '../hoc';
+import projectComponents from '../utils/projectsComponents';
 
 interface Tag {
   name: string;
   color: string;
 }
+
 interface ProjectProps {
   index: number;
   name: string;
@@ -19,6 +21,7 @@ interface ProjectProps {
   tags: Tag[];
   image: string;
   source_code_link: string;
+  onClick: () => void;
 }
 
 const ProjectCard: React.FC<ProjectProps> = ({
@@ -28,6 +31,7 @@ const ProjectCard: React.FC<ProjectProps> = ({
   tags,
   image,
   source_code_link,
+  onClick,
 }) => {
   return (
     <motion.div
@@ -35,7 +39,10 @@ const ProjectCard: React.FC<ProjectProps> = ({
         fadeIn('up', 'spring', index * 0.5, 0.75) as unknown as Variants
       }
     >
-      <Tilt className='bg-tertiary p-5 rounded-2xl sm:w-[360px] w-full'>
+      <Tilt
+        className='bg-tertiary p-5 rounded-2xl sm:w-[360px] w-full cursor-pointer'
+        onClick={onClick}
+      >
         <div className='relative w-full h-[230px]'>
           <img
             src={image}
@@ -45,7 +52,10 @@ const ProjectCard: React.FC<ProjectProps> = ({
 
           <div className='absolute inset-0 flex justify-end m-3 card-img_hover'>
             <div
-              onClick={() => window.open(source_code_link, '_blank')}
+              onClick={(e) => {
+                e.stopPropagation();
+                window.open(source_code_link, '_blank');
+              }}
               className='black-gradient w-10 h-10 rounded-full flex justify-center items-center cursor-pointer'
             >
               <img
@@ -77,9 +87,62 @@ const ProjectCard: React.FC<ProjectProps> = ({
   );
 };
 
+const Modal: React.FC<{
+  isOpen: boolean;
+  onClose: () => void;
+  projectIndex: number | null;
+}> = ({ isOpen, onClose, projectIndex }) => {
+  if (!isOpen || projectIndex === null) return null;
+
+  const project = projects[projectIndex];
+  const ProjectComponent = lazy(projectComponents[project.name]);
+
+  return (
+    <div className='fixed inset-0 flex items-center justify-center bg-black bg-opacity-50 z-50'>
+      <div className='bg-white p-5 rounded-lg'>
+        <div className='relative w-[800px] h-[500px] bg-gray-900 rounded-lg'>
+          <button
+            onClick={onClose}
+            className='absolute top-2 right-2 bg-red-500 text-white rounded-full w-8 h-8 flex items-center justify-center'
+          >
+            &times;
+          </button>
+          <div className='flex items-center justify-center h-full'>
+            <div className='bg-black w-[90%] h-[90%] flex items-center justify-center'>
+              <Suspense
+                fallback={<div className='text-white text-2xl'>Loading...</div>}
+              >
+                <ProjectComponent />
+              </Suspense>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  );
+};
+
 const Works: React.FC = () => {
+  const [isModalOpen, setIsModalOpen] = useState(false);
+  const [selectedProjectIndex, setSelectedProjectIndex] = useState<
+    number | null
+  >(null);
+
+  const handleCardClick = (index: number) => {
+    setSelectedProjectIndex(index);
+    setIsModalOpen(true);
+  };
+  console.log(projects);
+  console.log('isModalOpen', isModalOpen);
+
   return (
     <>
+      <Modal
+        isOpen={isModalOpen}
+        onClose={() => setIsModalOpen(false)}
+        projectIndex={selectedProjectIndex}
+      />
+
       <motion.div variants={textVariant() as unknown as Variants}>
         <p className={`${styles.sectionSubText} `}>My work</p>
         <h2 className={`${styles.sectionHeadText}`}>Projects.</h2>
@@ -100,7 +163,12 @@ const Works: React.FC = () => {
 
       <div className='mt-20 flex flex-wrap gap-7'>
         {projects.map((project, index) => (
-          <ProjectCard key={`project-${index}`} index={index} {...project} />
+          <ProjectCard
+            key={`project-${index}`}
+            index={index}
+            {...project}
+            onClick={() => handleCardClick(index)}
+          />
         ))}
       </div>
     </>

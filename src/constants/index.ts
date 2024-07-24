@@ -199,8 +199,8 @@ const testimonials = [
 
 const projects = [
   {
-    name: 'To be add',
-    description: 'To be add',
+    name: 'Kanban Project',
+    description: 'My own kanban dashboard',
     tags: [
       {
         name: 'react',
@@ -217,6 +217,7 @@ const projects = [
     ],
     image: temporaryClose,
     source_code_link: 'https://github.com/',
+    componentPath: '../projects/Kanban/index',
   },
   {
     name: 'To be add',
