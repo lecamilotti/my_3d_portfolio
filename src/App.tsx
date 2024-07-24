@@ -29,8 +29,9 @@ const App: React.FC = () => {
         <Experience />
         <Tech />
         <Works />
-        <Feedbacks />
-        <div className='relative z-0  mb-0 w-full pb-0'>
+
+        {/* <Feedbacks /> */}
+        <div className='relative z-0  mb-0 w-full mt-10 pb-0'>
           <Contact />
         </div>
       </div>

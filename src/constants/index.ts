@@ -15,15 +15,16 @@ import {
   git,
   figma,
   docker,
-  meta,
-  starbucks,
-  tesla,
-  shopify,
-  carrent,
+  Marcondes,
+  cmcFinans,
+  NTTdata,
+  villasBoas,
+  sass,
   temporaryClose,
   jobit,
   tripguide,
   threejs,
+  jira,
 } from '../assets';
 
 export const navLinks = [
@@ -43,19 +44,19 @@ export const navLinks = [
 
 const services = [
   {
-    title: 'Web Developer',
+    title: 'Frontend Developer',
     icon: web,
   },
   {
-    title: 'React Native Developer',
+    title: 'React Native Developer aspirant',
     icon: mobile,
   },
   {
-    title: 'Backend Developer',
+    title: 'Backend Developer Node.js',
     icon: backend,
   },
   {
-    title: 'Content Creator',
+    title: 'Creator of beautiful things',
     icon: creator,
   },
 ];
@@ -90,6 +91,10 @@ const technologies = [
     icon: tailwind,
   },
   {
+    name: 'sass',
+    icon: sass,
+  },
+  {
     name: 'Node JS',
     icon: nodejs,
   },
@@ -109,63 +114,58 @@ const technologies = [
     name: 'figma',
     icon: figma,
   },
+
   {
-    name: 'docker',
-    icon: docker,
+    name: 'Jira',
+    icon: jira,
   },
 ];
 
 const experiences = [
   {
-    title: 'React.js Developer',
-    company_name: 'Starbucks',
-    icon: starbucks,
-    iconBg: '#383E56',
-    date: 'March 2020 - April 2021',
+    title: 'FrontEnd Developer',
+    company_name: 'CMC Finans ApS / Sundhedplus.dk',
+    icon: cmcFinans,
+    iconBg: '#E6DEDD',
+    date: 'Feb 2022 - Current',
     points: [
-      'Developing and maintaining web applications using React.js and other related technologies.',
-      'Collaborating with cross-functional teams including designers, product managers, and other developers to create high-quality products.',
-      'Implementing responsive design and ensuring cross-browser compatibility.',
-      'Participating in code reviews and providing constructive feedback to other developers.',
+      'Achieved a significant impact by developing an innovative app that revolutionized access to healthcare in Denmark, enabling users to easily find clinics and medical professionals.',
+      'Showcased expertise in ReactJS, React Hooks, and Redux to deliver scalable and high-performing applications, resulting in an enhanced user experience.',
+      'Streamlined development processes and promoted effective collaboration by using CI/CD pipelines (Travis/CircleCI) and utilizing version control services (GIT/GitHub).',
+      'Enhanced project management and team productivity by using JIRA and Kanban tools, ensuring seamless workflow and efficient task allocation.',
+      'Ensured the reliability and quality of the software by employing robust testing frameworks (Vagrant with Selenium) for backend endpoint testing and frontend interface validation.',
+      'Fostered a collaborative and supportive work environment by actively collaborating with experienced senior developers, seeking their guidance, and contributing to knowledge sharing and continuous learning.',
+      'Demonstrated a strong commitment to personal growth and professional development through proactive pursuit of new projects and opportunities to expand skills, driving career advancement.',
     ],
   },
   {
-    title: 'React Native Developer',
-    company_name: 'Tesla',
-    icon: tesla,
+    title: 'IT Field Engineer',
+    company_name: 'NTT Data',
+    icon: NTTdata,
     iconBg: '#E6DEDD',
     date: 'Jan 2021 - Feb 2022',
     points: [
-      'Developing and maintaining web applications using React.js and other related technologies.',
-      'Collaborating with cross-functional teams including designers, product managers, and other developers to create high-quality products.',
-      'Implementing responsive design and ensuring cross-browser compatibility.',
-      'Participating in code reviews and providing constructive feedback to other developers.',
+      'inspect and installing new CISCO equipment and new technologies, and make sure that everything works smoothly and engineering designs are being followed.',
     ],
   },
   {
-    title: 'Web Developer',
-    company_name: 'Shopify',
-    icon: shopify,
-    iconBg: '#383E56',
-    date: 'Jan 2022 - Jan 2023',
+    title: 'IT Consultant freelancer',
+    company_name: 'Villas Boas Imóveis',
+    icon: villasBoas,
+    iconBg: '#FFFFFF',
+    date: 'May 2014 - Feb 2022',
     points: [
-      'Developing and maintaining web applications using React.js and other related technologies.',
-      'Collaborating with cross-functional teams including designers, product managers, and other developers to create high-quality products.',
-      'Implementing responsive design and ensuring cross-browser compatibility.',
-      'Participating in code reviews and providing constructive feedback to other developers.',
+      "I was responsible for upgrading all windows 7 user´s computers by upgrading to windows 10, the old dell server also changed the hardware and went through a complete upgrade, switching from the old windows 2003 server r2 to a new windows server 2012 adding VPN services connecting to the company's new branch office opened in 2017 with the Matrix data server and adding Hyper-V for better control of the file and print server, also maintaining the backup routine previously created and creating a new folder on the data server with confidential files, setting police access for specific people on the network.",
     ],
   },
   {
-    title: 'Full stack Developer',
-    company_name: 'Meta',
-    icon: meta,
-    iconBg: '#E6DEDD',
+    title: 'Windows server Admin / onsite Support',
+    company_name: 'Marcondes Da Mota Advocacia',
+    icon: Marcondes,
+    iconBg: '#FFFFFF',
     date: 'Jan 2023 - Present',
     points: [
-      'Developing and maintaining web applications using React.js and other related technologies.',
-      'Collaborating with cross-functional teams including designers, product managers, and other developers to create high-quality products.',
-      'Implementing responsive design and ensuring cross-browser compatibility.',
-      'Participating in code reviews and providing constructive feedback to other developers.',
+      'Install, configure and administer all features & services in Windows servers and Windows Workstations, maintain Window servers and workstations, problem isolation and resolution, administer Active Directory, DNS, DHC Server, Configure and Manage GPO ( Group Policy Objects ) to create a secure Windows Infrastructure, install and configure Windows Servers, 2003/2008, ISA servers 2006/2008, WSUS, Strong knowledge on administration, configuration, upgradation and maintenance on VMware and Microsoft Virtual PC, workstation experience with Windows, Win XP and 7. Install and configure Microsoft Exchange Server 2003, Maintain Microsoft Exchange e-mail accounts and public folder access through Microsft Exchange System Manager, Mailbox Management and strong knowledge on Symantec backup exec.',
     ],
   },
 ];

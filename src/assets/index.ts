@@ -20,11 +20,13 @@ import redux from './tech/redux.png';
 import tailwind from './tech/tailwind.png';
 import typescript from './tech/typescript.png';
 import threejs from './tech/threejs.svg';
+import sass from './tech/Sass.png';
+import jira from './tech/jira.png';
 
-import meta from './company/meta.png';
-import shopify from './company/shopify.png';
-import starbucks from './company/starbucks.png';
-import tesla from './company/tesla.png';
+import Marcondes from './company/Marcondes.png';
+import villasBoas from './company/villasBoas.jpeg';
+import cmcFinans from './company/cmcFinans.png';
+import NTTdata from './company/NTTdata.png';
 
 import carrent from './carrent.png';
 import jobit from './jobit.png';
@@ -48,15 +50,17 @@ export {
   javascript,
   mongodb,
   nodejs,
+  sass,
+  jira,
   reactjs,
   redux,
   tailwind,
   typescript,
   threejs,
-  meta,
-  shopify,
-  starbucks,
-  tesla,
+  Marcondes,
+  villasBoas,
+  cmcFinans,
+  NTTdata,
   carrent,
   jobit,
   tripguide,

@@ -16,11 +16,11 @@ const Hero: React.FC = () => {
 
         <div>
           <h1 className={`${styles.heroHeadText} text-white`}>
-            Hi, I'm <span className='text-[#915EFF]'>Leandro Camilotti</span>
+            Hi, I'm <span className='text-[#915EFF]'>Leandro</span>
           </h1>
           <p className={`${styles.heroSubText} mt-2 text-white-100`}>
             I´m a frontend developer <br className='sm:block hidden' />
-            Ready to create 3D interfaces and web applications
+            Ready to bring your ideas to life
           </p>
         </div>
       </div>

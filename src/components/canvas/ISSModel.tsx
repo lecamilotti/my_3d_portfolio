@@ -1,4 +1,4 @@
-import React, { Suspense, useRef } from 'react';
+import React, { Suspense, useEffect, useRef, useState } from 'react';
 import { Canvas, useFrame } from '@react-three/fiber';
 import { OrbitControls, Preload, Stars, useGLTF } from '@react-three/drei';
 import * as THREE from 'three';
@@ -9,9 +9,15 @@ type GLTFResult = {
   scene: THREE.Group;
 };
 
-const ISSModel: React.FC<{
-  issRef: React.MutableRefObject<THREE.Mesh | null>;
-}> = ({ issRef }) => {
+interface MobileProps {
+  isMobile: boolean;
+}
+
+const ISSModel: React.FC<
+  MobileProps & {
+    issRef: React.MutableRefObject<THREE.Mesh | null>;
+  }
+> = ({ issRef, isMobile }) => {
   const { scene } = useGLTF('./space_station/scene.gltf') as GLTFResult;
 
   return (
@@ -29,8 +35,8 @@ const ISSModel: React.FC<{
 
       <primitive
         object={scene}
-        scale={4.0}
-        position={[0, 7, 2]}
+        scale={isMobile ? 2.5 : 4.0}
+        position={isMobile ? [0, 2, 2] : [0, 7, 2]}
         rotation={[0, 4.2, 0]}
         autorotation={0.05}
       />
@@ -38,7 +44,7 @@ const ISSModel: React.FC<{
   );
 };
 
-const Earth: React.FC = () => {
+const Earth: React.FC<MobileProps> = ({ isMobile }) => {
   const earthRef = useRef<THREE.Mesh>(null);
   const { scene } = useGLTF('./planet/scene.gltf');
 
@@ -63,7 +69,7 @@ const Earth: React.FC = () => {
       <primitive
         rotation={[-0.05, -0.4, -0.1]}
         object={scene}
-        scale={25.0}
+        scale={isMobile ? 25.0 : 25.0}
         position={[0, -60, 0]}
         opacity={10}
         transparent
@@ -74,6 +80,31 @@ const Earth: React.FC = () => {
 };
 
 const ISSCanvas: React.FC<{}> = () => {
+  const [isMobile, setIsMobile] = useState(false);
+
+  useEffect(() => {
+    // Add a listener for changes to the screen size
+    const mediaQuery = window.matchMedia('(max-width: 500px)');
+
+    // Set the initial value of the `isMobile` state variable
+    setIsMobile(mediaQuery.matches);
+
+    // Define a callback function to handle changes to the media query
+    const handleMediaQueryChange = (event: {
+      matches: boolean | ((prevState: boolean) => boolean);
+    }) => {
+      setIsMobile(event.matches);
+    };
+
+    // Add the callback function as a listener for changes to the media query
+    mediaQuery.addEventListener('change', handleMediaQueryChange);
+
+    // Remove the listener when the component is unmounted
+    return () => {
+      mediaQuery.removeEventListener('change', handleMediaQueryChange);
+    };
+  }, []);
+
   const issRef = useRef<THREE.Mesh>(null);
 
   return (
@@ -94,8 +125,8 @@ const ISSCanvas: React.FC<{}> = () => {
           <ambientLight intensity={0.2} />
           {/* <OrbitControls enableZoom={false} autoRotate autoRotateSpeed={0.5} /> */}
           <OrbitControls enableZoom enableRotate enablePan />
-          <ISSModel issRef={issRef} />
-          <Earth />
+          <ISSModel issRef={issRef} isMobile={isMobile} />
+          <Earth isMobile={isMobile} />
           <Stars
             radius={300}
             depth={50}
