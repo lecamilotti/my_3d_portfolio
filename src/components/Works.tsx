@@ -34,7 +34,6 @@ const ProjectCard: React.FC<ProjectProps> = ({
   source_code_link,
   onClick,
 }) => {
-  console.log('On click', onClick);
   return (
     <motion.div
       variants={
@@ -104,12 +103,8 @@ const Works: React.FC = () => {
   >(null);
 
   const handleCardClick = (index: number) => {
-    console.log('clicked', index);
     setSelectedProjectIndex(index);
     setIsModalOpen(true);
-    console.log(projects);
-    console.log('isModalOpen', isModalOpen);
-    console.log('selectedProjectIndex', selectedProjectIndex);
   };
 
   return (

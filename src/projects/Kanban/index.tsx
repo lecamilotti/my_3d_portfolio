@@ -23,29 +23,37 @@ export const mockData = {
   cards: [
     {
       id: 'id - 1',
-      title: 'Get a job at UNIwise',
-      content:
-        'I hope UNIwise finds that I am a good match for the position and I get the job :-)',
+      title: 'Walking with my dog in the morning',
+      content: 'Take my dog for a walk in the park as soon as i have free time',
       column: 'Backlog',
       priority: 'high',
       status: 'Backlog',
     },
     {
       id: 'id - 2',
-      title: 'Finish the Kanban app and other tasks',
+      title: 'Finish projects to add to my portfolio',
       content:
-        'The kanban app and the other tasks will be a great challenge to work on',
-      column: 'Todo',
-      priority: 'medium',
-      status: 'Todo',
+        'after a couple of years working as frontend developer, now i´ve decided that is a good time to have a nice portfolio',
+      column: 'Backlog',
+      priority: 'high',
+      status: 'Backlog',
     },
     {
       id: 'id - 3',
-      title: 'Walk with my dog',
+      title: 'Finish the Kanban app and other tasks',
+      content:
+        'The kanban app and the other tasks will be a great challenge to work on',
+      column: 'Done',
+      priority: 'medium',
+      status: 'Done',
+    },
+    {
+      id: 'id - 4',
+      title: 'Walk with my dog in the afternoon',
       content: 'Take my dog for a walk in the park as soon as i have free time',
-      column: 'Backlog',
+      column: 'Todo',
       priority: 'low',
-      status: 'Backlog',
+      status: 'Todo',
     },
   ],
 };

@@ -80,7 +80,7 @@ const Contact: React.FC = () => {
         <ISSCanvas />
       </motion.div>
       {hovered && (
-        <div className='absolute top-0 left-1/2 transform -translate-x-1/2 -translate-y-1/2 p-6 bg-black-100 bg-opacity-90 rounded-lg shadow-2xl z-50 min-w-80 text-center'>
+        <div className='absolute top-0 left-1/2 transform -translate-x-1/2 -translate-y-1/2 p-6 bg-black-100 bg-opacity-90 rounded-lg shadow-2xl z-1 min-w-80 text-center'>
           <p className='text-center text-lg'>
             Would you like to contact me or work with me?
           </p>

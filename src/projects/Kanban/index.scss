@@ -16,7 +16,7 @@
   --text-lighter: #a59f9f; /* Even lighter text color */
   --text-title: #333; /* Text color for titles */
   --background-light: #f2f5f8; /* Slightly lighter panel background */
-  --background-light-green: radial-gradient(
+  --background-light-blue: radial-gradient(
     circle at 74.2% 50.9%,
     rgb(14, 72, 222) 5.2%,
     rgb(3, 22, 65) 75.3%
@@ -106,7 +106,7 @@
 
           &:focus {
             outline: none;
-            border: 1px solid #a3bd67;
+            border: 1px solid var(--border);
           }
         }
 
@@ -121,7 +121,7 @@
           .search-icon,
           .clear-icon {
             font-size: 30px;
-            color: #a3bd67;
+            color: var(--border);
             margin-left: 10px;
 
             transition: opacity 0.3s ease-in-out;
@@ -242,7 +242,7 @@
           border: 1px solid var(--border);
           border-radius: 5px;
           padding: 10px;
-          background: var(--background-light-green);
+          background: var(--background-light-blue);
           color: #fff;
         }
 
@@ -310,8 +310,7 @@
                 margin: auto;
                 width: 25px;
                 height: 25px;
-
-                background-color: #fffa;
+                margin-left: 15px;
                 box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
                 color: black;
                 border: none;
@@ -320,10 +319,9 @@
                 transition: filter 0.2s;
 
                 .icon {
-                  align-items: center;
-                  text-align: center;
+                  margin: auto;
                   font-size: 14px;
-                  padding-right: 20px;
+                  color: #333 !important;
                 }
 
                 &:hover {
@@ -365,6 +363,7 @@
     flex-direction: column;
     gap: 10px;
     padding: 20px;
+ 
 
     input,
     select,
@@ -375,9 +374,10 @@
       font-size: 16px;
       outline: none;
       transition: border-color 0.2s ease-in-out;
+      background: var(--background-light);
 
       &:focus {
-        border-color: #a3bd67;
+        border-color: var(--border);
       }
     }
 
@@ -386,7 +386,7 @@
     }
 
     button {
-      background-color: var(--background-light);
+      background: var(--background);
       color: #fff;
       padding: 10px 20px;
       border: none;

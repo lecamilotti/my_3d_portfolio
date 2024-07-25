@@ -14,7 +14,7 @@ import {
   mongodb,
   git,
   figma,
-  docker,
+  KanbanApp,
   Marcondes,
   cmcFinans,
   NTTdata,
@@ -207,16 +207,17 @@ const projects = [
         color: 'blue-text-gradient',
       },
       {
-        name: 'mongodb',
+        name: 'SaSS',
         color: 'green-text-gradient',
       },
       {
-        name: 'tailwind',
+        name: 'dnd-kit',
         color: 'pink-text-gradient',
       },
     ],
-    image: temporaryClose,
-    source_code_link: 'https://github.com/',
+    image: KanbanApp,
+    source_code_link:
+      'https://github.com/lecamilotti/my_3d_portfolio/tree/master/src/projects/Kanban',
     componentPath: '../projects/Kanban/index',
   },
   {
