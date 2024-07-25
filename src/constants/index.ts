@@ -21,8 +21,6 @@ import {
   villasBoas,
   sass,
   temporaryClose,
-  jobit,
-  tripguide,
   threejs,
   jira,
 } from '../assets';
@@ -35,6 +33,10 @@ export const navLinks = [
   {
     id: 'work',
     title: 'Work',
+  },
+  {
+    id: 'projects',
+    title: 'Projects',
   },
   {
     id: 'contact',

@@ -108,7 +108,7 @@ const ISSCanvas: React.FC<{}> = () => {
   const issRef = useRef<THREE.Mesh>(null);
 
   return (
-    <div className='relative w-full h-full z-0 mb-0 pb-0'>
+    <div className='relative w-full h-full z-[-1] mb-0 pb-0'>
       <Canvas
         shadows
         frameloop='always'

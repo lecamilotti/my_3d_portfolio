@@ -7,7 +7,7 @@ import { github } from '../assets';
 import { projects } from '../constants';
 import { fadeIn, textVariant } from '../utils/motion';
 import { SectionWrapper } from '../hoc';
-import projectComponents from '../utils/projectsComponents';
+
 import Modal from '../utils/Modal';
 
 interface Tag {
@@ -98,13 +98,17 @@ const ProjectCard: React.FC<ProjectProps> = ({
 
 const Works: React.FC = () => {
   const [isModalOpen, setIsModalOpen] = useState(false);
-  const [selectedProjectIndex, setSelectedProjectIndex] = useState<
-    number | null
-  >(null);
+  const [selectedProjectIndex, setSelectedProjectIndex] = useState<number | null>(null);
 
   const handleCardClick = (index: number) => {
-    setSelectedProjectIndex(index);
-    setIsModalOpen(true);
+    const projectsElement = document.getElementById('projects');
+    if (projectsElement) {
+      projectsElement.scrollIntoView({ behavior: 'smooth' });
+      setTimeout(() => {
+        setSelectedProjectIndex(index);
+        setIsModalOpen(true);
+      }, 300); // Delay opening the modal to allow for scrolling
+    }
   };
 
   return (
@@ -147,4 +151,4 @@ const Works: React.FC = () => {
   );
 };
 
-export default SectionWrapper({ idName: '', Component: Works });
+export default SectionWrapper({ idName: 'projects', Component: Works });
