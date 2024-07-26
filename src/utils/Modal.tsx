@@ -1,13 +1,56 @@
-import { lazy, Suspense } from 'react';
+// Modal Component
+import { lazy, Suspense, useState, useCallback } from 'react';
 import { projects } from '../constants';
 import projectComponents from './projectsComponents';
 import { PuffLoader } from 'react-spinners';
+import { Canvas } from '@react-three/fiber';
+import CanvasLoader from '../components/Loader';
+
+import { useEffect } from 'react';
+import { useGLTF } from '@react-three/drei';
+import * as THREE from 'three';
+
+type GLTFResult = {
+  scene: THREE.Group;
+};
+
+const MonitorModel = ({ onLoaded }: { onLoaded: () => void }) => {
+  const { scene } = useGLTF(
+    './4k_monitor_lg_32_inches/scene.gltf'
+  ) as GLTFResult;
+
+  useEffect(() => {
+    onLoaded();
+  }, [onLoaded]);
+
+  return (
+    <mesh>
+      <hemisphereLight intensity={0.15} />
+      <spotLight
+        position={[-20, 50, 10]}
+        angle={0.12}
+        penumbra={1}
+        intensity={1}
+        castShadow
+        shadow-mapSize={1024}
+      />
+      <pointLight intensity={1} />
+      <primitive object={scene} scale={11} position={[0, -3, 0]} />
+    </mesh>
+  );
+};
 
 const Modal: React.FC<{
   isOpen: boolean;
   onClose: () => void;
   projectIndex: number | null;
 }> = ({ isOpen, onClose, projectIndex }) => {
+  const [isMonitorLoaded, setIsMonitorLoaded] = useState(false);
+
+  const handleMonitorLoaded = useCallback(() => {
+    setIsMonitorLoaded(true);
+  }, []);
+
   if (!isOpen || projectIndex === null) return null;
 
   const project = projects[projectIndex];
@@ -15,36 +58,62 @@ const Modal: React.FC<{
     projectComponents[project.name as keyof typeof projectComponents]()
   );
 
-  // Add this line to disable scrolling on the background page
+  // Disable scrolling on the background page
   document.body.style.overflow = 'hidden';
 
   return (
-    <div className='fixed inset-0 flex items-center justify-center bg-black bg-opacity-80 z-50 min-w-full'>
-      <div className='bg-white p-5 rounded-lg'>
-        <div className='relative min-w-full h-full bg-gray-900 rounded-lg'>
-          <button
-            onClick={() => {
-              // Restore scrolling on the background page when the modal is closed
-              document.body.style.overflow = 'auto';
-              onClose();
-            }}
-            className='absolute top-2 right-2 bg-white text-black rounded-full w-8 h-8 flex items-center justify-center'
+    <div className='fixed inset-0 flex items-center justify-center bg-gradient-to-r from-blue-900 to-black  z-50 w-full h-full'>
+      <div className='relative w-full h-full max-w-[1280px] max-h-[800px]'>
+        <button
+          className='absolute top-4 right-4 bg-white text-black rounded-full w-8 h-8 flex items-center justify-center z-50'
+          onClick={() => {
+            // Restore scrolling on the background page when the modal is closed
+            document.body.style.overflow = 'auto';
+            onClose();
+          }}
+        >
+          &times;
+        </button>
+        <div className='w-full h-full flex items-center justify-center'>
+          <Canvas
+            style={{ width: '100%', height: '100%' }}
+            shadows
+            camera={{ position: [11, 0, 0], fov: 30 }}
+            dpr={[1, 2]}
+            gl={{ preserveDrawingBuffer: true }}
           >
-            &times;
-          </button>
-          <div className='flex items-center justify-center h-full'>
-            <div className='bg-white min-w-full h-full flex items-center justify-center'>
-              <Suspense
-                fallback={
-                  <div className='flex items-center min-w-[600px] justify-center min-h-[600px]'>
-                    <PuffLoader color='black' size={80} />
-                  </div>
-                }
+            <Suspense fallback={<CanvasLoader />}>
+              <MonitorModel onLoaded={handleMonitorLoaded} />
+            </Suspense>
+          </Canvas>
+
+          {isMonitorLoaded && (
+            <div
+              className='absolute inset-0 flex items-center justify-center z-30'
+              style={{
+                backgroundColor: 'transparent',
+              }}
+            >
+              <div
+                className='relative'
+                style={{
+                  width: '100%',
+                  height: '100%',
+                  maxWidth: '1070px',
+                  maxHeight: '540px',
+                  marginBottom: '85px',
+                  backgroundColor: 'white',
+                  overflowY: 'scroll',
+                  borderRadius: '8px',
+                  boxShadow: '0 0 10px rgba(0,0,0,0.5)',
+                }}
               >
-                <ProjectComponent />
-              </Suspense>
+                <Suspense fallback={<PuffLoader color='black' size={80} />}>
+                  <ProjectComponent />
+                </Suspense>
+              </div>
             </div>
-          </div>
+          )}
         </div>
       </div>
     </div>

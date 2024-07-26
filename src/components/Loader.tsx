@@ -1,6 +1,10 @@
 import { Html, useProgress } from '@react-three/drei';
 
-const CanvasLoader: React.FC = () => {
+interface CanvasLoaderProps {
+  color?: string;
+}
+
+const CanvasLoader: React.FC<CanvasLoaderProps> = ({ color }) => {
   const { progress } = useProgress();
   return (
     <Html
@@ -17,7 +21,7 @@ const CanvasLoader: React.FC = () => {
       <p
         style={{
           fontSize: 14,
-          color: '#F1F1F1',
+          color: color || '#F1F1F1',
           fontWeight: 800,
           marginTop: 40,
         }}

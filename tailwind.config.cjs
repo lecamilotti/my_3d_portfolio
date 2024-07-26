@@ -1,7 +1,5 @@
 const defaultTheme = require('tailwindcss/defaultTheme');
 
-
-
 const svgToDataUri = require('mini-svg-data-uri');
 
 const colors = require('tailwindcss/colors');
@@ -21,7 +19,7 @@ module.exports = {
       },
       colors: {
         primary: '#00686E',
-        secondary: '#68696B',
+        secondary: '#FFFFFF',
         tertiary: '#151030',
         'black-100': '#100d25',
         'black-200': '#090325',

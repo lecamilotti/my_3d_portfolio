@@ -124,7 +124,7 @@ const ISSCanvas: React.FC<{}> = () => {
         <Suspense fallback={<CanvasLoader />}>
           <ambientLight intensity={0.2} />
           {/* <OrbitControls enableZoom={false} autoRotate autoRotateSpeed={0.5} /> */}
-          <OrbitControls enableZoom enableRotate enablePan />
+          
           <ISSModel issRef={issRef} isMobile={isMobile} />
           <Earth isMobile={isMobile} />
           <Stars

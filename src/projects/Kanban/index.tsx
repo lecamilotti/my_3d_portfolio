@@ -229,7 +229,16 @@ function KanbanProject() {
 
   return (
     <div id='kanban'>
-      <Toaster position='top-right' reverseOrder={false} />
+      <Toaster
+        position='top-right'
+        reverseOrder={false}
+        containerStyle={{
+          top: 50,
+          right: 50,
+          padding: 10,
+          zIndex: 9999,
+        }}
+      />
       <KebabMenuModal
         isOpen={isKebabMenuOpen}
         onClose={() => setIsKebabMenuOpen(false)}
