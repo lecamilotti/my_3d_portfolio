@@ -59,7 +59,7 @@ const Contact: React.FC = () => {
   }, [showModal]);
 
   return (
-    <div className='relative h-[60vh] pb-0 mb-0 z-50'>
+    <div className='relative h-[60vh] pb-0 mb-0 '>
       <motion.div
         className='absolute inset-0 h-full z-0'
         onPointerOver={() => {
@@ -80,7 +80,7 @@ const Contact: React.FC = () => {
         <ISSCanvas />
       </motion.div>
       {hovered && (
-        <div className='absolute top-0 left-1/2 transform -translate-x-1/2 -translate-y-1/2 p-6 bg-black-100 bg-opacity-90 rounded-lg shadow-2xl z-50 min-w-80 text-center'>
+        <div className='absolute top-0 left-1/2 transform -translate-x-1/2 -translate-y-1/2 p-6 bg-black-100 bg-opacity-90 rounded-lg shadow-2xl z-10 min-w-80 text-center'>
           <p className='text-center text-lg'>
             Would you like to contact me or work with me?
           </p>
@@ -94,7 +94,7 @@ const Contact: React.FC = () => {
       )}
 
       {showModal && (
-        <div className='fixed inset-0 flex items-center justify-center bg-black bg-opacity-90 z-50 '>
+        <div className='fixed inset-0 flex items-center justify-center bg-black bg-opacity-90 z-10 '>
           <div className='bg-black-100 p-8 rounded-2xl shadow-lg relative w-[600px]'>
             <button
               onClick={() => setShowModal(false)}

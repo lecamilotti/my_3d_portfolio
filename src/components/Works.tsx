@@ -9,6 +9,9 @@ import { fadeIn, textVariant } from '../utils/motion';
 import { SectionWrapper } from '../hoc';
 
 import Modal from '../utils/Modal';
+import 'slick-carousel/slick/slick.css';
+import 'slick-carousel/slick/slick-theme.css';
+import Slider from 'react-slick';
 
 interface Tag {
   name: string;
@@ -26,7 +29,7 @@ interface ProjectProps {
 }
 
 const ProjectCard: React.FC<ProjectProps> = ({
-  index,
+
   name,
   description,
   tags,
@@ -35,70 +38,59 @@ const ProjectCard: React.FC<ProjectProps> = ({
   onClick,
 }) => {
   return (
-    <motion.div
-      variants={
-        fadeIn('up', 'spring', index * 0.5, 0.75) as unknown as Variants
-      }
+    <Tilt
+      className='bg-tertiary p-5 rounded-2xl sm:w-[360px] w-full cursor-pointer'
     >
-      <Tilt
-        className='bg-tertiary p-5 rounded-2xl sm:w-[360px] w-full cursor-pointer'
-        onClick={(e) => {
-          e.stopPropagation();
+      <div
+        className='relative w-full h-[230px]'
+        onClick={() => {
           onClick();
         }}
       >
-        <div
-          className='relative w-full h-[230px]'
-          onClick={() => {
-            onClick();
-          }}
-        >
-          <img
-            src={image}
-            alt='project_image'
-            className='w-full h-full object-cover rounded-2xl'
-          />
+        <img
+          src={image}
+          alt='project_image'
+          className='w-full h-full object-cover rounded-2xl'
+        />
 
-          <div className='absolute inset-0 flex justify-end m-3 card-img_hover'>
-            <div
-              onClick={(e) => {
-                e.stopPropagation();
-                window.open(source_code_link, '_blank');
-              }}
-              className='black-gradient w-10 h-10 rounded-full flex justify-center items-center cursor-pointer'
-            >
-              <img
-                src={github}
-                alt='source code'
-                className='w-1/2 h-1/2 object-contain'
-              />
-            </div>
+        <div className='absolute inset-0 flex justify-end m-3 card-img_hover'>
+          <div
+            onClick={(e) => {
+              e.stopPropagation();
+              window.open(source_code_link, '_blank');
+            }}
+            className='black-gradient w-10 h-10 rounded-full flex justify-center items-center cursor-pointer'
+          >
+            <img
+              src={github}
+              alt='source code'
+              className='w-1/2 h-1/2 object-contain'
+            />
           </div>
         </div>
+      </div>
 
-        <div className='mt-5'>
-          <h3 className='text-white font-bold text-[24px]'>{name}</h3>
-          <p className='mt-2 text-secondary text-[14px]'>{description}</p>
-        </div>
+      <div className='mt-5'>
+        <h3 className='text-white font-bold text-[24px]'>{name}</h3>
+        <p className='mt-2 text-secondary text-[14px]'>{description}</p>
+      </div>
 
-        <div className='mt-4 flex flex-wrap gap-2'>
-          {tags.map((tag) => (
-            <p
-              key={`${name}-${tag.name}`}
-              className={`text-[14px] ${tag.color}`}
-            >
-              #{tag.name}
-            </p>
-          ))}
-        </div>
-      </Tilt>
-    </motion.div>
+      <div className='mt-4 flex flex-wrap gap-2'>
+        {tags.map((tag) => (
+          <p key={`${name}-${tag.name}`} className={`text-[14px] ${tag.color}`}>
+            #{tag.name}
+          </p>
+        ))}
+      </div>
+    </Tilt>
   );
 };
 
 const Works: React.FC = () => {
   const [isModalOpen, setIsModalOpen] = useState(false);
-  const [selectedProjectIndex, setSelectedProjectIndex] = useState<number | null>(null);
+  const [selectedProjectIndex, setSelectedProjectIndex] = useState<
+    number | null
+  >(null);
 
   const handleCardClick = (index: number) => {
     const projectsElement = document.getElementById('projects');
@@ -109,6 +101,35 @@ const Works: React.FC = () => {
         setIsModalOpen(true);
       }, 300); // Delay opening the modal to allow for scrolling
     }
+  };
+
+  const settings = {
+    dots: true,
+    infinite: false,
+    // add space between cards in the slider
+    cssEase: 'ease',
+
+    speed: 500,
+    slidesToShow: 3,
+    slidesToScroll: 1,
+    responsive: [
+      {
+        breakpoint: 1280,
+        settings: {
+          slidesToShow: 2,
+          slidesToScroll: 1,
+          infinite: false,
+          dots: true,
+        },
+      },
+      {
+        breakpoint: 600,
+        settings: {
+          slidesToShow: 1,
+          slidesToScroll: 1,
+        },
+      },
+    ],
   };
 
   return (
@@ -137,15 +158,18 @@ const Works: React.FC = () => {
         </motion.p>
       </div>
 
-      <div className='mt-20 flex flex-wrap gap-7'>
-        {projects.map((project, index) => (
-          <ProjectCard
-            key={`project-${index}`}
-            index={index}
-            {...project}
-            onClick={() => handleCardClick(index)}
-          />
-        ))}
+      <div className='mt-20'>
+        <Slider {...settings}>
+          {projects.map((project, index) => (
+            <div key={`project-${index}`} className='p-2'>
+              <ProjectCard
+                index={index}
+                {...project}
+                onClick={() => handleCardClick(index)}
+              />
+            </div>
+          ))}
+        </Slider>
       </div>
     </>
   );
