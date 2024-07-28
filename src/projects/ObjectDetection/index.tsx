@@ -6,6 +6,7 @@ import * as cocossd from '@tensorflow-models/coco-ssd';
 import Webcam from 'react-webcam';
 import './globals.css';
 import { drawRect } from './utils/Utilities';
+import { PuffLoader } from 'react-spinners';
 
 // Define types for webcam and canvas references
 type WebcamRef = MutableRefObject<Webcam | null>;
@@ -62,13 +63,15 @@ const Home: React.FC = () => {
     }
   };
 
-  const handleDevices = (mediaDevices: MediaDeviceInfo[]) => {
-    setDevices(mediaDevices.filter(({ kind }) => kind === 'videoinput'));
-  };
+  const handleDevices = React.useCallback(
+    (mediaDevices: any[]) =>
+      setDevices(mediaDevices.filter(({ kind }) => kind === 'videoinput')),
+    [setDevices]
+  );
 
-  useEffect(() => {
+  React.useEffect(() => {
     navigator.mediaDevices.enumerateDevices().then(handleDevices);
-  }, []);
+  }, [handleDevices]);
 
   useEffect(() => {
     if (selectedDeviceId && cameraOn) {
@@ -111,11 +114,7 @@ const Home: React.FC = () => {
           <>
             {cameraOn && (
               <>
-                {loading && (
-                  <div className='spinner-container'>
-                    <div className='spinner'></div>
-                  </div>
-                )}
+                {loading && <PuffLoader color='black' size={80} />}
                 <Webcam
                   ref={webcamRef}
                   audio={false}
@@ -173,35 +172,6 @@ const Home: React.FC = () => {
           </>
         )}
       </main>
-
-      {/* Spinner styles */}
-      <style jsx>{`
-        .spinner-container {
-          position: absolute;
-          top: 50%;
-          left: 50%;
-          transform: translate(-50%, -50%);
-          z-index: 1000;
-        }
-
-        .spinner {
-          border: 8px solid #f3f3f3;
-          border-top: 8px solid #3498db;
-          border-radius: 50%;
-          width: 50px;
-          height: 50px;
-          animation: spin 2s linear infinite;
-        }
-
-        @keyframes spin {
-          0% {
-            transform: rotate(0deg);
-          }
-          100% {
-            transform: rotate(360deg);
-          }
-        }
-      `}</style>
     </div>
   );
 };
