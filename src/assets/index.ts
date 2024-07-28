@@ -27,7 +27,9 @@ import Marcondes from './company/Marcondes.png';
 import villasBoas from './company/villasBoas.jpeg';
 import cmcFinans from './company/cmcFinans.png';
 import NTTdata from './company/NTTdata.png';
+
 import KanbanApp from './KanbanApp.png';
+import objectDetectioApp from './objectDetectionApp.png';
 
 import carrent from './carrent.png';
 import jobit from './jobit.png';
@@ -67,4 +69,5 @@ export {
   tripguide,
   temporaryClose,
   KanbanApp,
+  objectDetectioApp,
 };

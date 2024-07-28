@@ -55,7 +55,7 @@ const Modal: React.FC<{
 
   const project = projects[projectIndex];
   const ProjectComponent = lazy(() =>
-    projectComponents[project.name as keyof typeof projectComponents]()
+    projectComponents[project.projectName as keyof typeof projectComponents]()
   );
 
   // Disable scrolling on the background page

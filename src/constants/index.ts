@@ -23,6 +23,7 @@ import {
   temporaryClose,
   threejs,
   jira,
+  objectDetectioApp,
 } from '../assets';
 
 export const navLinks = [
@@ -202,10 +203,12 @@ const testimonials = [
 const projects = [
   {
     name: 'Kanban Project',
-    description: 'My own kanban dashboard',
+    projectName: 'Kanban',
+    description:
+      'My own kanban dashboard project. using dnd-kit for drag and drop.',
     tags: [
       {
-        name: 'react',
+        name: 'React',
         color: 'blue-text-gradient',
       },
       {
@@ -216,6 +219,14 @@ const projects = [
         name: 'dnd-kit',
         color: 'pink-text-gradient',
       },
+      {
+        name: 'TypeScript',
+        color: 'blue-text-gradient',
+      },
+      {
+        name: 'React-hooks',
+        color: 'green-text-gradient',
+      },
     ],
     image: KanbanApp,
     source_code_link:
@@ -223,24 +234,35 @@ const projects = [
     componentPath: '../projects/Kanban/index',
   },
   {
-    name: 'To be add',
-    description: 'To be add',
+    name: 'Object Detection App',
+    projectName: 'ObjectDetectionApp',
+    description: 'This is a simple app that can detect objects in live videos.',
     tags: [
       {
-        name: 'react',
+        name: 'NextJs',
         color: 'blue-text-gradient',
       },
       {
-        name: 'mongodb',
+        name: 'Tensorflow',
         color: 'green-text-gradient',
       },
       {
-        name: 'tailwind',
+        name: 'coco-ssd model',
+        color: 'blue-text-gradient',
+      },
+      {
+        name: 'react-webcam',
         color: 'pink-text-gradient',
       },
+      {
+        name: 'TypeScript',
+        color: 'green-text-gradient',
+      },
     ],
-    image: temporaryClose,
-    source_code_link: 'https://github.com/',
+    image: objectDetectioApp,
+    source_code_link: 'https://github.com/lecamilotti/ObjectDetectionApp',
+    componentPath: '../projects/ObjectDetection/index',
+    warningMessage: 'This project requires a webcam to work.',
   },
   {
     name: 'To be add',

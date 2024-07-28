@@ -1,5 +1,7 @@
 const projectComponents = {
-  'Kanban Project': () => import('../projects/Kanban/index'),
+  Kanban: () => import('../projects/Kanban/index'),
+  ObjectDetectionApp: () => import('../projects/ObjectDetection/index'),
+
   // Add other project mappings similarly
 };
 

@@ -29,7 +29,6 @@ interface ProjectProps {
 }
 
 const ProjectCard: React.FC<ProjectProps> = ({
-
   name,
   description,
   tags,
@@ -38,9 +37,7 @@ const ProjectCard: React.FC<ProjectProps> = ({
   onClick,
 }) => {
   return (
-    <Tilt
-      className='bg-tertiary p-5 rounded-2xl sm:w-[360px] w-full cursor-pointer'
-    >
+    <Tilt className='bg-tertiary p-5 rounded-2xl sm:w-[360px] w-full cursor-pointer'>
       <div
         className='relative w-full h-[230px]'
         onClick={() => {
@@ -104,9 +101,9 @@ const Works: React.FC = () => {
   };
 
   const settings = {
-    dots: true,
+    // dots: true,
     infinite: false,
-    // add space between cards in the slider
+    arrows: projects.length > 3 ? true : false,
     cssEase: 'ease',
 
     speed: 500,
@@ -119,14 +116,16 @@ const Works: React.FC = () => {
           slidesToShow: 2,
           slidesToScroll: 1,
           infinite: false,
-          dots: true,
+          arrows: projects.length > 2 ? true : false,
+          // dots: true,
         },
       },
       {
-        breakpoint: 600,
+        breakpoint: 897,
         settings: {
           slidesToShow: 1,
           slidesToScroll: 1,
+          arrows: projects.length > 1 ? true : false,
         },
       },
     ],
@@ -159,7 +158,7 @@ const Works: React.FC = () => {
       </div>
 
       <div className='mt-20'>
-        <Slider {...settings}>
+        <Slider {...settings} dots={false}>
           {projects.map((project, index) => (
             <div key={`project-${index}`} className='p-2'>
               <ProjectCard
