@@ -144,8 +144,8 @@ const Home: React.FC = () => {
                     right: 0,
                     textAlign: 'center',
                     zIndex: 9,
-                    width: 1280,
-                    height: 980,
+                    width: '980px',
+                    height: '540px',
                   }}
                 />
                 <button
@@ -157,10 +157,11 @@ const Home: React.FC = () => {
                     right: 0,
                     margin: 10,
                     padding: '8px 12px',
-                    backgroundColor: 'white',
+                    backgroundColor: 'transparent',
                     border: '1px solid #ccc',
                     borderRadius: '5px',
                     cursor: 'pointer',
+                    fontSize: '16px',
                   }}
                 >
                   {cameraOn ? 'Turn Off Camera' : 'Turn On Camera'}
@@ -179,8 +180,8 @@ const Home: React.FC = () => {
                   right: 0,
                   textAlign: 'center',
                   zIndex: 50,
-                  width: 1280,
-                  height: 980,
+                  width: '980px',
+                  height: '540px',
                 }}
               />
             )}
