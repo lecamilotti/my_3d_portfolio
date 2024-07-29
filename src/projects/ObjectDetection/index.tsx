@@ -19,6 +19,7 @@ const Home: React.FC = () => {
   const [selectedDeviceId, setSelectedDeviceId] = useState<string | null>(null);
   const [cameraOn, setCameraOn] = useState<boolean>(true);
   const [loading, setLoading] = useState<boolean>(false); // State for loading spinner
+  const [permissionError, setPermissionError] = useState<string | null>(null);
 
   // Main function
   const runCoco = async () => {
@@ -64,14 +65,24 @@ const Home: React.FC = () => {
   };
 
   const handleDevices = React.useCallback(
-    (mediaDevices: any[]) =>
+    (mediaDevices: MediaDeviceInfo[]) =>
       setDevices(mediaDevices.filter(({ kind }) => kind === 'videoinput')),
     [setDevices]
   );
 
+  const requestCameraPermissions = async () => {
+    try {
+      await navigator.mediaDevices.getUserMedia({ video: true });
+      navigator.mediaDevices.enumerateDevices().then(handleDevices);
+    } catch (error) {
+      console.error('Error accessing camera:', error);
+      setPermissionError('Unable to access camera. Please grant permission.');
+    }
+  };
+
   React.useEffect(() => {
-    navigator.mediaDevices.enumerateDevices().then(handleDevices);
-  }, [handleDevices]);
+    requestCameraPermissions();
+  }, []);
 
   useEffect(() => {
     if (selectedDeviceId && cameraOn) {
@@ -91,7 +102,11 @@ const Home: React.FC = () => {
   return (
     <div className='App'>
       <main className='App-header'>
-        {devices.length > 0 && !loading && (
+        {permissionError && (
+          <div className='error-message'>{permissionError}</div>
+        )}
+
+        {devices.length > 0 && !loading && !permissionError && (
           <div className='select-device-container'>
             <label>Choose Camera:</label>
             <div className='select-device'>
@@ -110,7 +125,7 @@ const Home: React.FC = () => {
           </div>
         )}
 
-        {selectedDeviceId && (
+        {selectedDeviceId && !permissionError && (
           <>
             {cameraOn && (
               <>
