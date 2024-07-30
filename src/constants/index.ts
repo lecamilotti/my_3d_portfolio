@@ -166,7 +166,7 @@ const experiences = [
     company_name: 'Marcondes Da Mota Advocacia',
     icon: Marcondes,
     iconBg: '#FFFFFF',
-    date: 'Jan 2023 - Present',
+    date: 'Jul 2008 - Apr 2014',
     points: [
       'Install, configure and administer all features & services in Windows servers and Windows Workstations, maintain Window servers and workstations, problem isolation and resolution, administer Active Directory, DNS, DHC Server, Configure and Manage GPO ( Group Policy Objects ) to create a secure Windows Infrastructure, install and configure Windows Servers, 2003/2008, ISA servers 2006/2008, WSUS, Strong knowledge on administration, configuration, upgradation and maintenance on VMware and Microsoft Virtual PC, workstation experience with Windows, Win XP and 7. Install and configure Microsoft Exchange Server 2003, Maintain Microsoft Exchange e-mail accounts and public folder access through Microsft Exchange System Manager, Mailbox Management and strong knowledge on Symantec backup exec.',
     ],
