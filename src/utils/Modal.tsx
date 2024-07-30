@@ -45,7 +45,7 @@ const Modal: React.FC<{
   onClose: () => void;
   projectIndex: number | null;
 }> = ({ isOpen, onClose, projectIndex }) => {
-  const [isMonitorLoaded, setIsMonitorLoaded] = useState(false);
+  const [isMonitorLoaded, setIsMonitorLoaded] = useState<boolean>(false);
 
   const handleMonitorLoaded = useCallback(() => {
     setIsMonitorLoaded(true);
@@ -62,61 +62,73 @@ const Modal: React.FC<{
   document.body.style.overflow = 'hidden';
 
   return (
-    <div className='fixed inset-0 flex items-center justify-center bg-gradient-to-r from-blue-900 to-black  z-50 w-full h-full'>
-      <div className='relative w-full h-full max-w-[1280px] max-h-[800px]'>
-        <button
-          className='absolute top-4 right-4 bg-white text-black rounded-full w-8 h-8 flex items-center justify-center z-50'
-          onClick={() => {
-            // Restore scrolling on the background page when the modal is closed
-            document.body.style.overflow = 'auto';
-            onClose();
-          }}
-        >
-          &times;
-        </button>
-        <div className='w-full h-full flex items-center justify-center'>
-          <Canvas
-            style={{ width: '100%', height: '100%' }}
-            shadows
-            camera={{ position: [11, 0, 0], fov: 30 }}
-            dpr={[1, 2]}
-            gl={{ preserveDrawingBuffer: true }}
+    <>
+      <div className='fixed inset-0 flex items-center justify-center bg-gradient-to-r from-blue-900 to-black  z-50 w-full h-full'>
+        {projects[projectIndex].warningMessage && (
+          <div className='absolute text-white p-4 top-20'>
+            <div className='bg-red-500 p-5'>
+              <p className='text-center text-white '>
+                {projects[projectIndex].warningMessage}
+              </p>
+            </div>
+          </div>
+        )}
+        <div className='relative w-full h-full max-w-[1280px] max-h-[800px]'>
+          <button
+            className='absolute top-4 right-4 bg-white text-black rounded-full w-8 h-8 flex items-center justify-center z-50'
+            onClick={() => {
+              // Restore scrolling on the background page when the modal is closed
+              document.body.style.overflow = 'auto';
+              onClose();
+            }}
           >
-            <Suspense fallback={<CanvasLoader />}>
-              <MonitorModel onLoaded={handleMonitorLoaded} />
-            </Suspense>
-          </Canvas>
+            &times;
+          </button>
 
-          {isMonitorLoaded && (
-            <div
-              className='absolute inset-0 flex items-center justify-center z-30'
-              style={{
-                backgroundColor: 'transparent',
-              }}
+          <div className='w-full h-full flex items-center justify-center'>
+            <Canvas
+              style={{ width: '100%', height: '100%' }}
+              shadows
+              camera={{ position: [11, 0, 0], fov: 30 }}
+              dpr={[1, 2]}
+              gl={{ preserveDrawingBuffer: true }}
             >
+              <Suspense fallback={<CanvasLoader />}>
+                <MonitorModel onLoaded={handleMonitorLoaded} />
+              </Suspense>
+            </Canvas>
+
+            {isMonitorLoaded && (
               <div
-                className='relative'
+                className='absolute inset-0 flex items-center justify-center z-30'
                 style={{
-                  width: '100%',
-                  height: '100%',
-                  maxWidth: '1070px',
-                  maxHeight: '540px',
-                  marginBottom: '85px',
-                  backgroundColor: 'white',
-                  overflowY: 'scroll',
-                  borderRadius: '8px',
-                  boxShadow: '0 0 10px rgba(0,0,0,0.5)',
+                  backgroundColor: 'transparent',
                 }}
               >
-                <Suspense fallback={<PuffLoader color='black' size={80} />}>
-                  <ProjectComponent />
-                </Suspense>
+                <div
+                  className='relative'
+                  style={{
+                    width: '100%',
+                    height: '100%',
+                    maxWidth: '1070px',
+                    maxHeight: '540px',
+                    marginBottom: '85px',
+                    backgroundColor: 'white',
+                    overflowY: 'scroll',
+                    borderRadius: '8px',
+                    boxShadow: '0 0 10px rgba(0,0,0,0.5)',
+                  }}
+                >
+                  <Suspense fallback={<PuffLoader color='black' size={80} />}>
+                    <ProjectComponent />
+                  </Suspense>
+                </div>
               </div>
-            </div>
-          )}
+            )}
+          </div>
         </div>
       </div>
-    </div>
+    </>
   );
 };
 

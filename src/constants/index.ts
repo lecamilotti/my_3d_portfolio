@@ -262,7 +262,8 @@ const projects = [
     image: objectDetectioApp,
     source_code_link: 'https://github.com/lecamilotti/ObjectDetectionApp',
     componentPath: '../projects/ObjectDetection/index',
-    warningMessage: 'This project requires a webcam to work.',
+    warningMessage:
+      'This project requires you to have a webcam and grant permission to access the camera.',
   },
   {
     name: 'To be add',
