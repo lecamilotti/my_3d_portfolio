@@ -54,6 +54,7 @@ const Modal: React.FC<{
   if (!isOpen || projectIndex === null) return null;
 
   const project = projects[projectIndex];
+  console.log('Project', project);
   const ProjectComponent = lazy(() =>
     projectComponents[project.projectName as keyof typeof projectComponents]()
   );

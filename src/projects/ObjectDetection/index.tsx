@@ -28,7 +28,7 @@ const Home: React.FC = () => {
     await tf.ready();
     const net = await cocossd.load();
     console.log('Coco-SSD model loaded.');
-    setLoading(false); // Set loading to false when Coco-SSD is loaded
+    setTimeout(() => setLoading(false), 3000); // Set loading to false after 3 seconds to make sure tensorflow is loaded
 
     // Loop and detect objects
     setInterval(() => {
