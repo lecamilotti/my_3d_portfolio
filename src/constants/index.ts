@@ -51,15 +51,15 @@ const services = [
     icon: web,
   },
   {
-    title: "Mobile Developer React Native",
+    title: "Mobile React Native / Expo",
     icon: mobile,
   },
   {
-    title: "Backend Developer Node.js / Express",
+    title: "Backend with Node.js / Express",
     icon: backend,
   },
   {
-    title: "Creator 3D Three.js",
+    title: "3D Creator Three.js",
     icon: creator,
   },
 ];
@@ -132,13 +132,14 @@ const experiences = [
     iconBg: "#E6DEDD",
     date: "Feb 2022 - Current",
     points: [
-      "Achieved a significant impact by developing an innovative app that revolutionized access to healthcare in Denmark, enabling users to easily find clinics and medical professionals.",
-      "Showcased expertise in ReactJS, React Hooks, and Redux to deliver scalable and high-performing applications, resulting in an enhanced user experience.",
-      "Streamlined development processes and promoted effective collaboration by using CI/CD pipelines (Travis/CircleCI) and utilizing version control services (GIT/GitHub).",
-      "Enhanced project management and team productivity by using JIRA and Kanban tools, ensuring seamless workflow and efficient task allocation.",
-      "Ensured the reliability and quality of the software by employing robust testing frameworks (Vagrant with Selenium) for backend endpoint testing and frontend interface validation.",
-      "Fostered a collaborative and supportive work environment by actively collaborating with experienced senior developers, seeking their guidance, and contributing to knowledge sharing and continuous learning.",
-      "Demonstrated a strong commitment to personal growth and professional development through proactive pursuit of new projects and opportunities to expand skills, driving career advancement.",
+      "Developed a client portal authenticated by MitID, enabling customers to securely access their loan information with personalized credentials. This feature provided users with a comprehensive overview of their loans, significantly reducing traffic to customer support and allowing the company to reallocate resources to other strategic initiatives.",
+      "Achieved a significant impact by help creating an innovative app that revolutionized access to healthcare in Denmark, allowing users to effortlessly locate clinics and medical professionals.",
+      "Demonstrated expertise in ReactJS, React Hooks, and Redux, delivering scalable, high-performance applications that enhance user experience.",
+      "Consistently used CI/CD pipelines (Travis/CircleCI) and version control services (GIT/GitHub) to maintain code quality and streamline development processes.",
+      "Regularly utilized JIRA and Kanban tools to manage tasks and track progress, contributing to efficient project management and team productivity.",
+      "Employed Vagrant for backend development, and used Selenium and UILicious for frontend testing to ensure the reliability and quality of software.",
+      "Fostered a collaborative work environment by actively engaging with senior developers, seeking guidance, and contributing to knowledge sharing and continuous learning.",
+      "Demonstrated a commitment to personal growth and professional development by proactively pursuing new projects and opportunities to expand skills, driving career advancement.",
     ],
   },
   {
