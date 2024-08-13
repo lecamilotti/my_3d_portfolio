@@ -1,12 +1,12 @@
-'use client';
-import React, { useRef, useEffect, useState, MutableRefObject } from 'react';
-import * as tf from '@tensorflow/tfjs';
-import '@tensorflow/tfjs-backend-webgl';
-import * as cocossd from '@tensorflow-models/coco-ssd';
-import Webcam from 'react-webcam';
-import './globals.css';
-import { drawRect } from './utils/Utilities';
-import { PuffLoader } from 'react-spinners';
+"use client";
+import React, { useRef, useEffect, useState, MutableRefObject } from "react";
+import * as tf from "@tensorflow/tfjs";
+import "@tensorflow/tfjs-backend-webgl";
+import * as cocossd from "@tensorflow-models/coco-ssd";
+import Webcam from "react-webcam";
+import "./globals.css";
+import { drawRect } from "./utils/Utilities";
+import { PuffLoader } from "react-spinners";
 
 // Define types for webcam and canvas references
 type WebcamRef = MutableRefObject<Webcam | null>;
@@ -24,11 +24,9 @@ const Home: React.FC = () => {
   // Main function
   const runCoco = async () => {
     setLoading(true); // Set loading to true when starting to run Coco-SSD
-    await tf.setBackend('webgl');
+    await tf.setBackend("webgl");
     await tf.ready();
     const net = await cocossd.load();
-    console.log('Coco-SSD model loaded.');
-    setTimeout(() => setLoading(false), 3000); // Set loading to false after 3 seconds to make sure tensorflow is loaded
 
     // Loop and detect objects
     setInterval(() => {
@@ -55,8 +53,9 @@ const Home: React.FC = () => {
 
         const obj = await net.detect(video);
 
-        const ctx = canvasRef.current.getContext('2d');
+        const ctx = canvasRef.current.getContext("2d");
         if (ctx) {
+          setTimeout(() => setLoading(false), 3000); // Set loading to false after 3 seconds to make sure tensorflow is loaded
           ctx.clearRect(0, 0, videoWidth, videoHeight);
           drawRect(obj, ctx);
         }
@@ -66,7 +65,7 @@ const Home: React.FC = () => {
 
   const handleDevices = React.useCallback(
     (mediaDevices: MediaDeviceInfo[]) =>
-      setDevices(mediaDevices.filter(({ kind }) => kind === 'videoinput')),
+      setDevices(mediaDevices.filter(({ kind }) => kind === "videoinput")),
     [setDevices]
   );
 
@@ -75,8 +74,8 @@ const Home: React.FC = () => {
       await navigator.mediaDevices.getUserMedia({ video: true });
       navigator.mediaDevices.enumerateDevices().then(handleDevices);
     } catch (error) {
-      console.error('Error accessing camera:', error);
-      setPermissionError('Unable to access camera. Please grant permission.');
+      console.error("Error accessing camera:", error);
+      setPermissionError("Unable to access camera. Please grant permission.");
     }
   };
 
@@ -100,21 +99,21 @@ const Home: React.FC = () => {
   };
 
   return (
-    <div className='App'>
-      <main className='App-header'>
+    <div className="App">
+      <main className="App-header">
         {permissionError && (
-          <div className='error-message'>{permissionError}</div>
+          <div className="error-message">{permissionError}</div>
         )}
 
         {devices.length > 0 && !loading && !permissionError && (
-          <div className='select-device-container'>
+          <div className="select-device-container">
             <label>Choose Camera:</label>
-            <div className='select-device'>
+            <div className="select-device">
               <select
                 onChange={handleDeviceChange}
-                value={selectedDeviceId || ''}
+                value={selectedDeviceId || ""}
               >
-                <option value=''>select a camera</option>
+                <option value="">select a camera</option>
                 {devices.map((device, index) => (
                   <option key={device.deviceId} value={device.deviceId}>
                     {device.label || `Camera ${index + 1}`}
@@ -129,7 +128,7 @@ const Home: React.FC = () => {
           <>
             {cameraOn && (
               <>
-                {loading && <PuffLoader color='black' size={80} />}
+                {loading && <PuffLoader color="black" size={80} />}
                 <Webcam
                   ref={webcamRef}
                   audio={false}
@@ -137,34 +136,34 @@ const Home: React.FC = () => {
                     deviceId: selectedDeviceId ? selectedDeviceId : undefined,
                   }}
                   style={{
-                    position: 'absolute',
-                    marginLeft: 'auto',
-                    marginRight: 'auto',
+                    position: "absolute",
+                    marginLeft: "auto",
+                    marginRight: "auto",
                     left: 0,
                     right: 0,
-                    textAlign: 'center',
+                    textAlign: "center",
                     zIndex: 9,
-                    width: '980px',
-                    height: '540px',
+                    width: "980px",
+                    height: "540px",
                   }}
                 />
                 <button
                   onClick={toggleCamera}
                   style={{
                     zIndex: 1000,
-                    position: 'absolute',
+                    position: "absolute",
                     top: 0,
                     right: 0,
                     margin: 10,
-                    padding: '8px 12px',
-                    backgroundColor: 'transparent',
-                    border: '1px solid #ccc',
-                    borderRadius: '5px',
-                    cursor: 'pointer',
-                    fontSize: '16px',
+                    padding: "8px 12px",
+                    backgroundColor: "transparent",
+                    border: "1px solid #ccc",
+                    borderRadius: "5px",
+                    cursor: "pointer",
+                    fontSize: "16px",
                   }}
                 >
-                  {cameraOn ? 'Turn Off Camera' : 'Turn On Camera'}
+                  {cameraOn ? "Turn Off Camera" : "Turn On Camera"}
                 </button>
               </>
             )}
@@ -173,15 +172,15 @@ const Home: React.FC = () => {
               <canvas
                 ref={canvasRef}
                 style={{
-                  position: 'absolute',
-                  marginLeft: 'auto',
-                  marginRight: 'auto',
+                  position: "absolute",
+                  marginLeft: "auto",
+                  marginRight: "auto",
                   left: 0,
                   right: 0,
-                  textAlign: 'center',
+                  textAlign: "center",
                   zIndex: 50,
-                  width: '980px',
-                  height: '540px',
+                  width: "980px",
+                  height: "540px",
                 }}
               />
             )}
