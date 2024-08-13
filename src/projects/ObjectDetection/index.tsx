@@ -4,7 +4,7 @@ import * as tf from '@tensorflow/tfjs';
 import '@tensorflow/tfjs-backend-webgl';
 import * as cocossd from '@tensorflow-models/coco-ssd';
 import Webcam from 'react-webcam';
-import './globals.css';
+import './globals.css';s
 import { drawRect } from './utils/Utilities';
 import { PuffLoader } from 'react-spinners';
 
