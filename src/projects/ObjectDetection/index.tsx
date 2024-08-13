@@ -55,9 +55,9 @@ const Home: React.FC = () => {
 
         const ctx = canvasRef.current.getContext("2d");
         if (ctx) {
-          setTimeout(() => setLoading(false), 3000); // Set loading to false after 3 seconds to make sure tensorflow is loaded
           ctx.clearRect(0, 0, videoWidth, videoHeight);
           drawRect(obj, ctx);
+          setTimeout(() => setLoading(false), 3000); // Set loading to false after 3 seconds to make sure tensorflow is loaded
         }
       }
     }
